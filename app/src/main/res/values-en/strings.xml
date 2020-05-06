@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IDEC Argentina</string>
+    <string name="bienvenida">Welcome!</string>
+    <string name="log_in">Log in</string>
+    <string name="info">What is IDEC?</string>
+    <string name="carga">Opening aplication</string>
+    <string name="nombre_usuario">Email</string>
+    <string name="nombre_contraseña">Password</string>
+    <string name="crear_usuario">Sign up</string>
+    <string name="boton_entrar">Get in</string>
+    <string name="registro_nombre">Name</string>
+    <string name="registro_apellido">Surname</string>
+    <string name="registro_email">Email</string>
+    <string name="registro_nroalumno">Student number</string>
+    <string name="registro_password1">Enter password</string>
+    <string name="registro_password2">Repeat password</string>
+    <string name="registro_boton">Save</string>
+    <string name="registro_texto">New account</string>
+    <string name="registro_toast_password">The entered passwords do not match</string>
+    <string name="registro_toast_mail">The email format is incorrect</string>
+    <string name="registro_toast_campos">It is necessary to complete all the fields</string>
+    <string name="registro_telefono">Phone number</string>
+    <string name="registro_alert_si">Yes</string>
+    <string name="registro_alert_titulo">You already have your account created!</string>
+    <string name="registro_alert_contenido">Do you want to log into your account for the first time?</string>
+    <string name="registro_toast_cuentacreada">Account created</string>
+</resources>

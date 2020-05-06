@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">IDEC Argentina</string>
+    <!--CARGA ACTIVITY -->
+    <!-- Carga -->
+    <string name="carga">Abriendo aplicación</string>
+    <!--MAIN ACTIVITY -->
+    <!-- Acceso -->
+    <string name="bienvenida">Bienvenido!</string>
+    <!-- Acceso -->
+    <string name="log_in">Acceder</string>
+
+    <!-- Crear Usuario -->
+    <string name="crear_usuario">Registrate</string>
+
+    <!-- Que es el idec -->
+    <string name="info">Que es el IDEC?</string>
+
+    <!--LOGIN FRAGMENT -->
+    <!-- Usuario-->
+    <string name="nombre_usuario">Email</string>
+
+    <!-- Contraseña-->
+    <string name="nombre_contraseña">Contraseña</string>
+
+    <!-- Entrar-->
+    <string name="boton_entrar">Entrar</string>
+
+    <!--REGISTRO -->
+    <!-- Nombre-->
+    <string name="registro_nombre">Nombre</string>
+
+    <!-- Apellido-->
+    <string name="registro_apellido">Apellido</string>
+
+    <!-- Email-->
+    <string name="registro_email">Email</string>
+
+    <!-- Nro de Alumno-->
+    <string name="registro_nroalumno">Número de alumno</string>
+
+    <!-- Telefono-->
+    <string name="registro_telefono">Número de teléfono</string>
+
+    <!-- Contraseña1-->
+    <string name="registro_password1">Ingrese la contraseña</string>
+
+    <!-- Contraseña2-->
+    <string name="registro_password2">Repita la contraseña</string>
+
+    <!-- Boton-->
+    <string name="registro_boton">Guardar</string>
+
+    <!-- Texto-->
+    <string name="registro_texto">Nueva cuenta</string>
+
+    <!-- Toast Advertiencia contraseña-->
+    <string name="registro_toast_password">Las contraseñas ingresadas no coinciden</string>
+
+    <!-- Toast Advertiencia Email-->
+    <string name="registro_toast_mail">El formato del email es incorrecto</string>
+
+    <!-- Toast Advertiencia Email-->
+    <string name="registro_toast_campos">Es necesario completar todos los campos</string>
+
+    <!-- Toast Cuenta Creada-->
+    <string name="registro_toast_cuentacreada">Cuenta creada</string>
+
+    <!-- Alert Dialog -->
+    <string name="registro_alert_titulo">Ya tenes tu cuenta creada!</string>
+    <string name="registro_alert_contenido">¿Deseas entrar a tu cuenta por primera vez?</string>
+    <string name="registro_alert_si">Si</string>
+
+
+
+
+
+</resources>
