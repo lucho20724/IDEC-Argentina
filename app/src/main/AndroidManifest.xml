@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoBar">
+        <activity android:name=".NuevocandidatoActivity"></activity>
+        <activity android:name=".InfluencerActivity" />
+        <activity android:name=".ImagenActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".UserActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".InfoActivity" />
         <activity

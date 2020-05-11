@@ -25,4 +25,21 @@
     <string name="registro_alert_contenido">¿Deseas entrar a tu cuenta por primera vez?</string>
     <string name="registro_alert_titulo">Ya tenes tu cuenta creada!</string>
     <string name="registro_toast_cuentacreada">Cuenta creada</string>
+    <string name="toast_internet">Verifique la conexión a Internet</string>
+    <string name="toast_datosincorrectos">Mail o contraseña incorrectas</string>
+    <string name="admin_cuentaadmin">Cuenta de administrador</string>
+    <string name="admin_saludo">Hola</string>
+    <string name="admin_influencer">Administración Colportor Influencer</string>
+    <string name="admin_colportores">Administración Colportores</string>
+    <string name="user_cuentauser">Cuenta de colportor</string>
+    <string name="user_influencer">Colportor Influencer</string>
+    <string name="influencer_compromiso">Compromiso</string>
+    <string name="influencer_compromisotexto">"Orar y actuar, estando presente en la vida de mis amigos y compañeros, para que conozcan sobre la obra misionera del colportaje y motivarlos de distintas maneras, para que sean parte de una campaña durante las vacaciones     "</string>
+    <string name="boton_agregar">Agregar</string>
+    <string name="boton_editar">Editar</string>
+    <string name="boton_borrar">Borrar</string>
+    <string name="nuevoaspirante_titulo">Crear nuevo candidato a colportor</string>
+    <string name="nuevoaspirante_alert_titulo">Candidato creado!</string>
+    <string name="nuevoaspirante_alert_contenido">¿Deseas guardar otro candidato?</string>
+    <string name="nuevoaspirante_toast_aspirantenuevo">Candidato creado</string>
 </resources>

@@ -25,4 +25,21 @@
     <string name="registro_alert_titulo">You already have your account created!</string>
     <string name="registro_alert_contenido">Do you want to log into your account for the first time?</string>
     <string name="registro_toast_cuentacreada">Account created</string>
+    <string name="toast_internet">Check the internet connection</string>
+    <string name="toast_datosincorrectos">wrong email or password</string>
+    <string name="admin_cuentaadmin">Administrator account</string>
+    <string name="admin_saludo">Hi</string>
+    <string name="admin_influencer">Manage Colportor Influencer</string>
+    <string name="admin_colportores">Manage Colportores</string>
+    <string name="user_cuentauser">Account colportor</string>
+    <string name="user_influencer">Colportor Influencer</string>
+    <string name="influencer_compromiso">Commitment</string>
+    <string name="influencer_compromisotexto">Pray and act, being present in the lives of my friends and colleagues, so that they know about the missionary work of canvassing and motivate them in different ways, so that they are part of a campaign during the holidays</string>
+    <string name="boton_agregar">Add</string>
+    <string name="boton_editar">Edit</string>
+    <string name="boton_borrar">Borrar</string>
+    <string name="nuevoaspirante_titulo">Create new colportor candidate</string>
+    <string name="nuevoaspirante_alert_titulo">Created candidate!</string>
+    <string name="nuevoaspirante_alert_contenido">Do you want to save another candidate?</string>
+    <string name="nuevoaspirante_toast_aspirantenuevo">Created candidate</string>
 </resources>

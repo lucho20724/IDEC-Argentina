@@ -56,7 +56,7 @@ public class RegistroActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.registro_toast_mail, Toast.LENGTH_SHORT).show();
         }else{
             progressBar.setVisibility(View.VISIBLE);
-            crearUsuario_Servicio("http://192.168.1.8//IDEC/insertar_usuario.php");
+            crearUsuario_Servicio("http://192.168.42.177/IDEC/insertar_usuario.php");
         }
     }
 
@@ -106,6 +106,7 @@ public class RegistroActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), R.string.registro_toast_cuentacreada, Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder alerta = new AlertDialog.Builder(RegistroActivity.this);
                         alerta.setMessage(R.string.registro_alert_contenido)
+                                .setTitle(R.string.registro_alert_titulo)
                                 .setCancelable(false)
                                 .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                                     @Override
@@ -121,8 +122,6 @@ public class RegistroActivity extends AppCompatActivity {
                                         finish();
                                     }
                                 });
-                        AlertDialog title = alerta.create();
-                        title.setTitle(R.string.registro_alert_titulo);
                         alerta.show();
                     }
                 },3000);
@@ -131,7 +130,7 @@ public class RegistroActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage().toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.toast_internet,Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
