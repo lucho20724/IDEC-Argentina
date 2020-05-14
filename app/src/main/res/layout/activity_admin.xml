@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/design_default_color_background"
-    tools:context=".AdminActivity">
+    tools:context=".Admin.AdminActivity">
 
     <Button
         android:id="@+id/btnConfiguracion_User"
         android:layout_width="294dp"
         android:layout_height="79dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/gradient_button"
+        android:background="@drawable/gradient_button_admin"
         android:drawableLeft="@drawable/ic_admincolp"
         android:text="@string/admin_colportores"
         android:textAlignment="center"
@@ -76,7 +76,7 @@
         android:layout_width="294dp"
         android:layout_height="79dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/gradient_button"
+        android:background="@drawable/gradient_button_admin"
         android:drawableLeft="@drawable/influencer"
         android:onClick="onClick"
         android:text="@string/admin_influencer"

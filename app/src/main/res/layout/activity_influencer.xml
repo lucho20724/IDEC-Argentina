@@ -5,7 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorInfluencer"
-    tools:context=".InfluencerActivity">
+    tools:context=".User.InfluencerActivity">
+
+    <Button
+        android:id="@+id/btnVer_influencer"
+        android:layout_width="301dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/boton_blanco"
+        android:drawableLeft="@drawable/ic_ver"
+        android:onClick="onClick"
+        android:text="@string/boton_ver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNuevo_influencer" />
 
     <Button
         android:id="@+id/btnNuevo_influencer"
@@ -66,29 +79,31 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnEditar_influencer"
         android:layout_width="301dp"
         android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/boton_blanco"
         android:drawableLeft="@drawable/ic_editar"
+        android:onClick="onClick"
         android:text="@string/boton_editar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNuevo_influencer" />
+        app:layout_constraintTop_toBottomOf="@+id/btnVer_influencer" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnEliminar_influencer"
         android:layout_width="301dp"
         android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/boton_blanco"
         android:drawableLeft="@drawable/ic_borrar"
+        android:onClick="onClick"
         android:text="@string/boton_borrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditar_influencer"
         app:layout_constraintVertical_bias="0.013" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

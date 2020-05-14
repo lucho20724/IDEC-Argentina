@@ -35,7 +35,7 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
 
-            case R.id.btnSalir_Admin:
+            case R.id.btnSalir_User:
                 SharedPreferences preferences=getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
                 preferences.edit().clear().commit();
 

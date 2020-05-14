@@ -85,7 +85,6 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                                     }
                                 });
                         alerta.show();
-
                     }
                 }, 3000);
 
