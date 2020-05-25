@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorInfluencer"
-    tools:context=".User.ListacandidatosActivity">
+    tools:context=".Admin.ListacandidatosadminActivity">
+
 
     <ProgressBar
         android:id="@+id/prBar_Listacandidatosadmin"
@@ -17,24 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/listViewCandidatos"
-        android:layout_width="323dp"
-        android:layout_height="508dp"
-        android:background="@color/colorPrimaryDark"
-        android:cacheColorHint="@color/cardview_dark_background"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible" >
-
-    </ListView>
-
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -45,5 +27,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/listViewCandidatosAdmin"
+        android:layout_width="323dp"
+        android:layout_height="508dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
