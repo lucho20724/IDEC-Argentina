@@ -1,4 +1,4 @@
-package com.example.idecargentina;
+package com.example.idecargentina.ActivitiesCommon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,10 @@ import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.idecargentina.Admin.AdminActivity;
 import com.example.idecargentina.Entidades.Usuario;
+import com.example.idecargentina.R;
+import com.example.idecargentina.User.UserActivity;
 import com.google.gson.Gson;
 
 public class CargaActivity extends AppCompatActivity {
@@ -40,21 +43,16 @@ public class CargaActivity extends AppCompatActivity {
                     Intent i= null;
 
                     if(usuario.getCodrol()==1 || usuario.getCodrol()==2){
-                        try{
-                            i= new Intent(CargaActivity.this,AdminActivity.class);
-                        }catch (Exception e){
-                            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-                        }
-                        i.putExtra("Usuario",usuario);
+                        i= new Intent(CargaActivity.this, AdminActivity.class);
                     }else{
-                        i= new Intent(getApplicationContext(),UserActivity.class);
-                        i.putExtra("Usuario",usuario);
+                        i= new Intent(getApplicationContext(), UserActivity.class);
                     }
+                    i.putExtra("usuario",usuario);
                     startActivity(i);
                     finish();
 
                 }else {
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                     finish();
                 }

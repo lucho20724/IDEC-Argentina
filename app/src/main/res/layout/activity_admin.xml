@@ -9,15 +9,15 @@
 
     <Button
         android:id="@+id/btnAdminColportores_Admin"
-
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/boton_btnmenuppal"
-        android:drawableLeft="@drawable/ic_admincolp"
+        android:drawableLeft="@drawable/admin_colportor"
         android:onClick="onClick"
         android:text="@string/admin_colportores"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnInfluencer_Admin" />
 
@@ -57,7 +57,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/boton_btnmenuppal"
-        android:drawableLeft="@drawable/influencer"
+        android:drawableLeft="@drawable/admin_influencer"
         android:onClick="onClick"
         android:text="@string/admin_influencer"
         android:textAlignment="center"
@@ -69,13 +69,15 @@
         android:id="@+id/btnSalir_Admin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/boton_salir"
         android:drawableLeft="@drawable/logo_salir"
         android:onClick="onClick"
         android:text="@string/cerrar_sesion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdminColportores_Admin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIConfigpersonal_Admin" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -85,5 +87,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:srcCompat="@drawable/logo_idec" />
+
+    <Button
+        android:id="@+id/btnIConfigpersonal_Admin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/boton_configuracion"
+        android:drawableLeft="@drawable/ic_admincolp"
+        android:onClick="onClick"
+        android:text="@string/user_configpersonal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/admin_pasaporte"
+        android:background="@drawable/boton_btnmenuppal"
+        android:text="@string/admin_pasaporte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdminColportores_Admin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.idecargentina;
+package com.example.idecargentina.ActivitiesCommon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.idecargentina.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
         Intent i= null;
         switch (view.getId()){
             case R.id.btnAcceder_main:
-                i= new Intent(this,LoginActivity.class);
+                i= new Intent(this, LoginActivity.class);
                 break;
             case R.id.btnRegistro_main:
-                i= new Intent(this,RegistroActivity.class);
+                i= new Intent(this, RegistroActivity.class);
                 break;
             case R.id.btnInfo_main:
-                i= new Intent(this,InfoActivity.class);
+                i= new Intent(this, InfoActivity.class);
                 break;
         }
         try{

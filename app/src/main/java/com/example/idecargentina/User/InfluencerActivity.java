@@ -1,4 +1,4 @@
-package com.example.idecargentina;
+package com.example.idecargentina.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.idecargentina.Entidades.Usuario;
+import com.example.idecargentina.R;
 
 public class InfluencerActivity extends AppCompatActivity {
     Usuario u;
@@ -16,7 +17,7 @@ public class InfluencerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_influencer);
 
-        u = (Usuario)getIntent().getSerializableExtra("Usuario");
+        u = (Usuario)getIntent().getSerializableExtra("usuario");
     }
 
     public void onClick(View view){
@@ -24,7 +25,24 @@ public class InfluencerActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.btnNuevo_influencer:
                 i= new Intent(this, NuevocandidatoActivity.class);
-                i.putExtra("Usuario",u);
+                i.putExtra("usuario",u);
+                break;
+
+            case R.id.btnVer_influencer:
+                i= new Intent(this, ListacandidatosActivity.class);
+                i.putExtra("usuario",u);
+                break;
+
+            case R.id.btnEditar_influencer:
+                i= new Intent(this, ListacandidatosActivity.class);
+                i.putExtra("usuario",u);
+                i.putExtra("editar",true);
+                break;
+
+            case R.id.btnEliminar_influencer:
+                i= new Intent(this, ListacandidatosActivity.class);
+                i.putExtra("usuario",u);
+                i.putExtra("eliminar",true);
                 break;
         }
 

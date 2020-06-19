@@ -65,16 +65,16 @@
         android:id="@+id/btnSalir_User"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="456dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="356dp"
         android:background="@drawable/boton_salir"
         android:drawableLeft="@drawable/logo_salir"
         android:onClick="onClick"
         android:text="@string/cerrar_sesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInfluencer_User"
+        app:layout_constraintTop_toBottomOf="@+id/btnIConfigpersonal_User"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -90,5 +90,33 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblSaludo" />
+
+
+    <Button
+        android:id="@+id/btnPasaporte_User"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/boton_btnmenuppal"
+        android:drawableLeft="@drawable/ic_pasaporte"
+        android:onClick="onClick"
+        android:text="Pasaporte del colportor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInfluencer_User" />
+
+    <Button
+        android:id="@+id/btnIConfigpersonal_User"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/boton_configuracion"
+        android:drawableLeft="@drawable/ic_admincolp"
+        android:onClick="onClick"
+        android:text="@string/user_configpersonal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPasaporte_User" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

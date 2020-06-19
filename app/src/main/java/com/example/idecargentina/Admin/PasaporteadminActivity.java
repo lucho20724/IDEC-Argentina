@@ -1,4 +1,4 @@
-package com.example.idecargentina.ActivitiesCommon;
+package com.example.idecargentina.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.idecargentina.R;
 
-public class InfoActivity extends AppCompatActivity {
+public class PasaporteadminActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info);
+        setContentView(R.layout.activity_pasaporteadmin);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.idecargentina;
+package com.example.idecargentina.User;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,16 +19,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.idecargentina.Entidades.Candidato;
 import com.example.idecargentina.Entidades.Usuario;
+import com.example.idecargentina.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NuevocandidatoActivity extends AppCompatActivity {
 
     EditText campo_nombre, campo_apellido, campo_mail, campo_telefono;
     ProgressBar progressBar;
     Usuario u;
+    boolean editar,borrar;
+    Candidato c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +46,106 @@ public class NuevocandidatoActivity extends AppCompatActivity {
         campo_mail = (EditText)findViewById(R.id.edMail_Aspirante);
         campo_telefono = (EditText)findViewById(R.id.edTelefono_Aspirante);
         progressBar = (ProgressBar)findViewById(R.id.prBar_aspirante);
-        u = (Usuario)getIntent().getSerializableExtra("Usuario");
+        u = (Usuario)getIntent().getSerializableExtra("usuario");
 
+        editar = getIntent().getBooleanExtra("editar",false);
 
+        if(editar){
+            c= (Candidato)getIntent().getSerializableExtra("candidato");
+
+            campo_nombre.setText(c.getNombre());
+            campo_apellido.setText(c.getApellido());
+            campo_mail.setText(c.getMail());
+            campo_telefono.setText(c.getTelefono());
+        }
         progressBar.setVisibility(View.INVISIBLE);
     }
 
     public void onClick(View view){
-        Intent i = null;
-        progressBar.setVisibility(View.VISIBLE);
-        crearAspirante_Servicio("http://192.168.42.177/IDEC/insertar_aspirante.php");
+        if(editar){
+            if(validarMail(campo_mail.getText().toString())){
+                AlertDialog.Builder alerta = new AlertDialog.Builder(NuevocandidatoActivity.this);
+                alerta.setMessage(R.string.editaraspirante_confirmacion)
+                        .setTitle(R.string.atencion)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                progressBar.setVisibility(View.VISIBLE);
+                                editarAspirante_Serivicio("http://192.168.42.177/IDEC/editar_candidato.php");
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alerta.show();
+            }else{
+                Toast.makeText(this, R.string.registro_toast_mail, Toast.LENGTH_SHORT).show();
+            }
+        }else if(borrar){
+        }else{
+            AlertDialog.Builder alerta = new AlertDialog.Builder(NuevocandidatoActivity.this);
+            alerta.setMessage("Desesa crear el candidato a colportor?")//TODO
+                    .setTitle(R.string.atencion)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                progressBar.setVisibility(View.VISIBLE);
+                                crearAspirante_Servicio("http://192.168.42.177/IDEC/insertar_aspirante.php");
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+            alerta.show();
+        }
+    }
+
+    private void editarAspirante_Serivicio(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), R.string.aspiranteactualizado_toast, Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(getApplicationContext(), InfluencerActivity.class);
+                        i.putExtra("usuario",u);
+                        startActivity(i);
+                    }
+                }, 2000);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage().toString(),Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> parametros = new HashMap<String,String>();
+                parametros.put("nombre",campo_nombre.getText().toString());
+                parametros.put("apellido",campo_apellido.getText().toString());
+                parametros.put("mail",campo_mail.getText().toString());
+                parametros.put("telefono",campo_telefono.getText().toString());
+                parametros.put("codcandidato",String.valueOf(c.getCodcandidato()));
+                return parametros;
+            }
+        };
+
+        RequestQueue rq = Volley.newRequestQueue(this);
+        try{
+            rq.add(stringRequest);
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void crearAspirante_Servicio(String URL){
@@ -78,8 +174,8 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent i = new Intent(getApplicationContext(),InfluencerActivity.class);
-                                        i.putExtra("Usuario",u);
+                                        Intent i = new Intent(getApplicationContext(), InfluencerActivity.class);
+                                        i.putExtra("usuario",u);
                                         startActivity(i);
                                         finish();
                                     }
@@ -87,13 +183,11 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                         alerta.show();
                     }
                 }, 3000);
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage().toString(),Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getApplicationContext(),R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -104,17 +198,27 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                 parametros.put("email",campo_mail.getText().toString());
                 parametros.put("telefono",campo_telefono.getText().toString());
                 parametros.put("codusuario",String.valueOf(u.getCodusuario()));
-
                 return parametros;
             }
         };
 
         RequestQueue rq = Volley.newRequestQueue(this);
-        try{
-            rq.add(stringRequest);
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-        }
+        rq.add(stringRequest);
 
     }
+
+    private boolean validarMail(String email) {
+        boolean valido=false;
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(email);
+        if (mather.find() == true) {
+            valido = true;
+        }else{
+            campo_mail.setBackgroundResource(R.drawable.edit_error);
+        }
+        return valido;
+    }
+
 }

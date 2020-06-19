@@ -1,4 +1,4 @@
-package com.example.idecargentina;
+package com.example.idecargentina.ActivitiesCommon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.textclassifier.TextLinks;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -20,7 +19,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.idecargentina.Admin.AdminActivity;
 import com.example.idecargentina.Entidades.Usuario;
+import com.example.idecargentina.R;
+import com.example.idecargentina.User.UserActivity;
+import com.example.idecargentina.Utilidades.Funciones;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -33,10 +36,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText campo_mail, campo_password;
     ProgressBar progressBar;
     String responseGlobal;
+    Funciones fun;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        fun= new Funciones();
 
         campo_mail=(EditText)findViewById(R.id.edMail_Login);
         campo_password=(EditText)findViewById(R.id.edPassword_Login);
@@ -54,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                         validarUsuario_Servicio("http://192.168.42.177/IDEC/verificar_usuario.php");
                     }else {
-                        Toast.makeText(this,"No se permiten campos vacios",Toast.LENGTH_SHORT).show();//TODO
+                        Toast.makeText(this,R.string.registro_toast_campos,Toast.LENGTH_SHORT).show();
                     }
                 }catch (Error e){
                     Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
@@ -63,26 +69,26 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private  void validarUsuario_Servicio(String URL){
+    private void validarUsuario_Servicio(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(final String response) {
                 responseGlobal=response;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         progressBar.setVisibility(View.INVISIBLE);
                         if(!responseGlobal.isEmpty()){
-                            Usuario u = obtenerUsuario(responseGlobal);
+                            Usuario u = fun.obtenerUsuario(response,getApplicationContext());
                             guardarPreferencias(u);
                             Intent i;
 
                             if(u.getCodrol()==1 || u.getCodrol()==2){
-                                i = new Intent(getApplicationContext(),AdminActivity.class);
+                                i = new Intent(getApplicationContext(), AdminActivity.class);
                             }else{
-                                i = new Intent(getApplicationContext(),UserActivity.class);
+                                i = new Intent(getApplicationContext(), UserActivity.class);
                             }
-                            i.putExtra("Usuario",u);
+                            i.putExtra("usuario",u);
                             startActivity(i);
                             finish();
                         }else{
@@ -108,25 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         };
         rq = Volley.newRequestQueue(this);
         rq.add(stringRequest);
-    }
-
-    private Usuario obtenerUsuario(String response){
-        Usuario u = new Usuario();
-        try{
-            JSONObject jsonObject=new JSONObject(response);
-            u.setCodusuario(jsonObject.getInt("codusuario"));
-            u.setNombre(jsonObject.getString("nombre"));
-            u.setApellido(jsonObject.getString("apellido"));
-            u.setMail(jsonObject.getString("mail"));
-            u.setPassword(jsonObject.getString("password"));
-            u.setNroalumno(jsonObject.getInt("nroalumno"));
-            u.setTelefono(jsonObject.getString("telefono"));
-            u.setCodrol(jsonObject.getInt("codrol"));
-
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-        }
-        return u;
     }
 
     private void guardarPreferencias(Usuario usuario){

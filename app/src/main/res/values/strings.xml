@@ -22,6 +22,9 @@
     <!-- Contraseña-->
     <string name="nombre_contraseña">Contraseña</string>
 
+    <!-- Contraseña que no coincide-->
+    <string name="toast_contraseña">La contraseña no coincide con la anterior. Si no la recuerda contacte con el administrador</string>
+
     <!-- Entrar-->
     <string name="boton_entrar">Entrar</string>
 
@@ -53,11 +56,18 @@
     <!-- Contraseña2-->
     <string name="registro_password2">Repita la contraseña</string>
 
+    <!-- Contraseñaantigua-->
+    <string name="registro_password3">Ingrese la contraseña antigua</string>
+
+
     <!-- Boton-->
     <string name="registro_boton">Guardar</string>
 
     <!-- Texto-->
     <string name="registro_texto">Nueva cuenta</string>
+
+    <!-- Seleccion-->
+    <string name="registro_campo">Seleccione el campo donde vas a colportar</string>
 
     <!-- Toast Advertiencia contraseña-->
     <string name="registro_toast_password">Las contraseñas ingresadas no coinciden</string>
@@ -65,7 +75,10 @@
     <!-- Toast Advertiencia Email-->
     <string name="registro_toast_mail">El formato del email es incorrecto</string>
 
-    <!-- Toast Advertiencia Email-->
+    <!-- Toast Advertiencia elegir campo-->
+    <string name="registro_toast_camposcolp">Debe seleccionar una opción</string>
+
+    <!-- Toast Advertiencia Campos vaciosl-->
     <string name="registro_toast_campos">Es necesario completar todos los campos</string>
 
     <!-- Toast Cuenta Creada-->
@@ -89,12 +102,44 @@
     <!-- Boton Administracion Influencer-->
     <string name="admin_colportores">Administración Colportores</string>
 
+    <!-- Boton Administracion Pasaporte-->
+    <string name="admin_pasaporte">Administración Pasaporte del colportor</string>
+
+
+    <!-- Boton Cambiar contraseña-->
+    <string name="boton_contraseña">Cambiar contraseña</string>
+
+    <!-- Boton Cambiar contraseña-->
+    <string name="texto_editusuario">Editar usuario</string>
+
+    <!-- Advertencia borrar colportor-->
+    <string name="toast_borrar_colportor">¿Esta seguro que desea borrar el colportor seleccionado?</string>
+
+    <!-- Alert cambiar rol administrador-->
+    <string name="alert_rol_admin">¿Desea cambiar el rol a administrador?</string>
+
+    <!-- Alert cambiar rol user-->
+    <string name="alert_rol_user">¿Desea cambiar el rol a colportor?</string>
+
+    <!-- Toast rol actualizado-->
+    <string name="toast_rol_actualizado">Rol actualizado</string>
+
+    <!-- Toast colportor eliminado-->
+    <string name="toast_colportor_eliminado">Colportor eliminado</string>
+
+
     <!--USER ACTIVITY-->
     <!-- Nombre de cuenta-->
     <string name="user_cuentauser">Cuenta de colportor</string>
 
     <!--Influencer-->
     <string name="user_influencer">Colportor Influencer</string>
+
+    <!--Influencer-->
+    <string name="user_geocolportaje">GeoColportaje</string>
+
+    <!--Influencer-->
+    <string name="user_configpersonal">Configuración personal</string>
 
 
     <!--INFLUENCER ACTIVITY-->
@@ -115,6 +160,24 @@
     <!-- Borrar-->
     <string name="boton_borrar">Borrar</string>
 
+    <!-- Atencion-->
+    <string name="atencion">Atención</string>
+
+    <!-- Colportor influencer-->
+    <string name="influencer">Colportor influencer</string>
+
+    <!-- Ver-->
+    <string name="boton_ver">Ver</string>
+
+    <!-- Cerrar sesion-->
+    <string name="cerrar_sesion">Cerrar sesión</string>
+
+    <!-- Mensaje cerrar sesion-->
+    <string name="toast_cerrarsesion">Está seguro que desea cerrar la sesión?</string>
+
+    <!-- Proximamente-->
+    <string name="toast_proximamente">Proximamente</string>
+
     <!--NUEVO ASPIRANTE ACTIVITY-->
     <!-- titulo de nuevo aspirante-->
     <string name="nuevoaspirante_titulo">Crear nuevo candidato a colportor</string>
@@ -124,9 +187,16 @@
     <string name="nuevoaspirante_alert_contenido">¿Deseas guardar otro candidato?</string>
     <string name="nuevoaspirante_toast_aspirantenuevo">Candidato creado</string>
 
+    <string name="editaraspirante_confirmacion">¿Está seguro de editar el candidato a colportor?</string>
+    <string name="nuevoaspirante_confirmacion">¿Está seguro de guardar el candidato a colportor?</string>
 
 
+    <!-- actualizar aspirante toast-->
+    <string name="aspiranteactualizado_toast">Candidato a colportor actualizado</string>
 
+    <!--Ver ASPIRANTE ACTIVITY-->
+    <!-- ver aspirante-->
+    <string name="vercandidato_titulo">Seleccione un candidato a colportor</string>
 
 
 </resources>
