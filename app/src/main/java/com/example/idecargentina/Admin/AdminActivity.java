@@ -85,6 +85,10 @@ public class AdminActivity extends AppCompatActivity {
                 i.putExtra("usuario",u);
                 startActivity(i);
                 break;
+            case R.id.btnAdminPasaporte_Admin:
+                i = new Intent(this, PasaporteadminActivity.class);
+                i.putExtra("usuario",u);
+                startActivity(i);
         }
     }
 

@@ -3,10 +3,12 @@ package com.example.idecargentina.User;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -28,64 +30,39 @@ import java.util.Map;
 public class PasaporteuserActivity extends AppCompatActivity {
 
     ImageView imagen;
-    Usuario usuario;
+    Usuario u;
     ProgressBar progressBar;
+    TextView txtUsuario, txtPasaporte;
+    boolean pasaporte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pasaporteuser);
 
-        usuario=(Usuario)getIntent().getSerializableExtra("usuario");
-
+        u=(Usuario)getIntent().getSerializableExtra("usuario");
         imagen= (ImageView)findViewById(R.id.imagen_Pasaporte);
-
         progressBar = (ProgressBar)findViewById(R.id.prBar_Pasaporte);
+        txtUsuario = (TextView)findViewById(R.id.lblUsuario_pasaporte);
+        txtPasaporte = (TextView)findViewById(R.id.lblPasaporte_pasaporte);
+
         progressBar.setVisibility(View.VISIBLE);
 
-        consultarPasaporte_Servicio("http://192.168.42.177/IDEC/obtener_pasaporte.php]");
+        boolean passport=u.getPasaporte();
+
+        if(u.getPasaporte()) {
+            txtPasaporte.setText("PASAPORTE HABILITADO");
+            txtPasaporte.setTextColor(Color.GREEN);
+        }else {
+            txtPasaporte.setText("PASAPORTE DENEGADO");
+            txtPasaporte.setTextColor(Color.RED);
+        }
+
+        txtUsuario.setText(u.getNombre()+" "+u.getApellido()+" ("+String.valueOf(u.getNroalumno())+")");
+
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
-    private void consultarPasaporte_Servicio(String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(PasaporteuserActivity.this, "aca llega", Toast.LENGTH_SHORT).show();
-                 /*if(!response.isEmpty()){
-                     progressBar.setVisibility(View.VISIBLE);
-                     try {
-                         JSONObject jsonObject = new JSONObject(response);
-                         int pasaporteint= jsonObject.getInt("pasaporte");
-                         if(pasaporteint==0)
-                             imagen.setImageResource(R.drawable.accesodenegado);
-                         else
-                             imagen.setImageResource(R.drawable.pasaporte);
 
-                     } catch (JSONException e) {
-                         e.printStackTrace();
-                     }
-                 }
-                 else{
-                     Toast.makeText(PasaporteuserActivity.this, "aca llega", Toast.LENGTH_SHORT).show();
-                 }*/
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyError error1= error;
-                progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(PasaporteuserActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("codusuario",String.valueOf(usuario.getCodusuario()));
-                return parametros;
-            }
-        };
-        RequestQueue rq = Volley.newRequestQueue(this);
-        rq.add(stringRequest);
-    }
 
 }

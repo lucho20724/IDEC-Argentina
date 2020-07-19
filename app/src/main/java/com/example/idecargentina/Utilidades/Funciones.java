@@ -29,7 +29,7 @@ public class Funciones {
     }
 
     public Usuario obtenerUsuarioId_Servicio(final int codusuario, final Context context){
-        String URL = "http://192.168.42.177/IDEC/obtener_usuario_id.php";
+        String URL = "http://www.boxwakanda.site/servicios/obtener_usuario_id.php";
         usuario = new Usuario();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
@@ -50,7 +50,6 @@ public class Funciones {
                 return parametros;
             }
         };
-
         RequestQueue rq = Volley.newRequestQueue(context);
         rq.add(stringRequest);
         return usuario;
@@ -60,6 +59,8 @@ public class Funciones {
         Usuario u = new Usuario();
         try{
             JSONObject jsonObject=new JSONObject(response);
+
+            String response2=response;
             u.setCodusuario(jsonObject.getInt("codusuario"));
             u.setNombre(jsonObject.getString("nombre"));
             u.setApellido(jsonObject.getString("apellido"));
@@ -68,6 +69,10 @@ public class Funciones {
             u.setNroalumno(jsonObject.getInt("nroalumno"));
             u.setTelefono(jsonObject.getString("telefono"));
             u.setCodrol(jsonObject.getInt("codrol"));
+            u.setCodcampo(jsonObject.getInt("codcampo"));
+            int estadopasaporte=jsonObject.getInt("pasaporte");
+            if(estadopasaporte==0) u.setPasaporte(false);
+            else u.setPasaporte(true);
 
         }catch (Exception e){
             Toast.makeText(context,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
@@ -81,7 +86,6 @@ public class Funciones {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
-
         return isConnected;
     }
 }

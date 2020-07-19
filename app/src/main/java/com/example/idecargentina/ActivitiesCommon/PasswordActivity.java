@@ -67,7 +67,7 @@ public class PasswordActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    comprobarpassword_Servicio("http://192.168.42.177/IDEC/obtener_password.php");
+                    comprobarpassword_Servicio("http://www.boxwakanda.site/servicios/obtener_password.php");
                 }
             },3000);
         }
@@ -85,13 +85,13 @@ public class PasswordActivity extends AppCompatActivity {
                         String passwordvieja1 = campo_passvieja.getText().toString();
                         if (passwordvieja1.equals(passwordvieja)) {
                             AlertDialog.Builder alerta = new AlertDialog.Builder(PasswordActivity.this);
-                            alerta.setMessage("Confirma el cambio de contraseña?")//TODO
+                            alerta.setMessage(R.string.text_confirmacionpassword)
                                     .setTitle(R.string.atencion)
                                     .setCancelable(false)
                                     .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            modificarPassword_Servicio("http://192.168.42.177/IDEC/editar_password.php");
+                                            modificarPassword_Servicio("http://www.boxwakanda.site/servicios/editar_password.php");
                                         }
                                     })
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {

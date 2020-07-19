@@ -25,4 +25,91 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="110dp"
+        android:layout_height="85dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_idec" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="239dp"
+        android:layout_height="203dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pasaporte" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="255dp"
+        android:layout_height="88dp"
+        android:gravity="center"
+        android:text="@string/pasaporte_user"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView21" />
+
+    <TextView
+        android:id="@+id/lblPasaporte_pasaporte"
+        android:layout_width="316dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <TextView
+        android:id="@+id/lblUsuario_pasaporte"
+        android:layout_width="278dp"
+        android:layout_height="43dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblPasaporte_pasaporte" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="132dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView24"
+        app:layout_constraintStart_toEndOf="@+id/imageView23"
+        app:layout_constraintTop_toBottomOf="@+id/lblUsuario_pasaporte"
+        app:srcCompat="@drawable/logo_ceape" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="79dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblUsuario_pasaporte"
+        app:srcCompat="@drawable/logo_lacabanita" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="86dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblUsuario_pasaporte"
+        app:srcCompat="@drawable/logo_prints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

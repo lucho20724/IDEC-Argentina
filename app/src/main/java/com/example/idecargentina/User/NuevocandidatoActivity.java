@@ -63,7 +63,11 @@ public class NuevocandidatoActivity extends AppCompatActivity {
 
     public void onClick(View view){
         if(editar){
-            if(validarMail(campo_mail.getText().toString())){
+            if(!validarCampos())
+                Toast.makeText(this, R.string.registro_toast_campos, Toast.LENGTH_SHORT).show();
+            else if(!validarMail(campo_mail.getText().toString())){
+                Toast.makeText(this, R.string.registro_toast_mail, Toast.LENGTH_SHORT).show();
+            }else{
                 AlertDialog.Builder alerta = new AlertDialog.Builder(NuevocandidatoActivity.this);
                 alerta.setMessage(R.string.editaraspirante_confirmacion)
                         .setTitle(R.string.atencion)
@@ -72,7 +76,7 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 progressBar.setVisibility(View.VISIBLE);
-                                editarAspirante_Serivicio("http://192.168.42.177/IDEC/editar_candidato.php");
+                                editarAspirante_Servicio("http://www.boxwakanda.site/servicios/editar_candidato.php");
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -82,20 +86,22 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                             }
                         });
                 alerta.show();
-            }else{
-                Toast.makeText(this, R.string.registro_toast_mail, Toast.LENGTH_SHORT).show();
             }
-        }else if(borrar){
         }else{
-            AlertDialog.Builder alerta = new AlertDialog.Builder(NuevocandidatoActivity.this);
-            alerta.setMessage("Desesa crear el candidato a colportor?")//TODO
-                    .setTitle(R.string.atencion)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
+            if(!validarCampos())
+                Toast.makeText(this, R.string.registro_toast_campos, Toast.LENGTH_SHORT).show();
+            else if(!validarMail(campo_mail.getText().toString())){
+                Toast.makeText(this, R.string.registro_toast_mail, Toast.LENGTH_SHORT).show();
+            }else {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(NuevocandidatoActivity.this);
+                alerta.setMessage(R.string.texto_crearaspirante)
+                        .setTitle(R.string.atencion)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 progressBar.setVisibility(View.VISIBLE);
-                                crearAspirante_Servicio("http://192.168.42.177/IDEC/insertar_aspirante.php");
+                                crearAspirante_Servicio("http://www.boxwakanda.site/servicios/insertar_aspirante.php");
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -104,11 +110,12 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                                 dialog.cancel();
                             }
                         });
-            alerta.show();
+                alerta.show();
+            }
         }
     }
 
-    private void editarAspirante_Serivicio(String URL) {
+    private void editarAspirante_Servicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -201,10 +208,8 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                 return parametros;
             }
         };
-
         RequestQueue rq = Volley.newRequestQueue(this);
         rq.add(stringRequest);
-
     }
 
     private boolean validarMail(String email) {
@@ -219,6 +224,15 @@ public class NuevocandidatoActivity extends AppCompatActivity {
             campo_mail.setBackgroundResource(R.drawable.edit_error);
         }
         return valido;
+    }
+
+    private boolean validarCampos() {
+        boolean valido=false;
+        if(campo_nombre.getText().length() != 0 && campo_apellido.getText().length()!=0
+                && campo_mail.getText().length()!=0
+                && campo_telefono.getText().length()!=0)
+            valido=true;
+        return  valido;
     }
 
 }

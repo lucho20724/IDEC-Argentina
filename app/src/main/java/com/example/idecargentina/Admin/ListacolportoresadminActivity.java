@@ -21,11 +21,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.idecargentina.ActivitiesCommon.MainActivity;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.Informes.InformecolportorActivity;
 import com.example.idecargentina.R;
-import com.example.idecargentina.User.InfluencerActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,16 +56,16 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
         u = (Usuario)getIntent().getSerializableExtra("usuario");
 
         listaColportores= new ArrayList<>();
-        listViewColportores = (ListView) findViewById(R.id.listViewColportoresAdmin);
-        progressBar = (ProgressBar)findViewById(R.id.prBar_Listacacolportoresadmin);
+        listViewColportores = (ListView) findViewById(R.id.listViewPasaporteAdmin);
+        progressBar = (ProgressBar)findViewById(R.id.prBar_Listacolportoresadmin);
 
         eliminar = getIntent().getBooleanExtra("eliminar",false);
         cambiarrol = getIntent().getBooleanExtra("cambiarrol",false);
         pasaporte = getIntent().getBooleanExtra("pasaporte",false);
 
-        buscarColportores_Serivicio("http://192.168.42.177/IDEC/buscar_colportores.php");
+        progressBar.setVisibility(View.VISIBLE);
+        buscarColportores_Servicio("http://www.boxwakanda.site/servicios/buscar_colportores.php");
 
-        progressBar.setVisibility(View.INVISIBLE);
 
         listViewColportores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,7 +81,7 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     colportor=listaColportores.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    eliminarColportor_Servicio("http://192.168.42.177/IDEC/eliminar_colportor.php",colportor.getCodusuario());
+                                    eliminarColportor_Servicio("http://www.boxwakanda.site/servicios/eliminar_colportor.php",colportor.getCodusuario());
 
                                 }
                             })
@@ -105,7 +103,7 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         colportor=listaColportores.get(posicion);
                                         progressBar.setVisibility(View.VISIBLE);
-                                        cambiarRol_Servicio("http://192.168.42.177/IDEC/cambiar_rol.php",colportor.getCodusuario(),colportor.getCodrol());
+                                        cambiarRol_Servicio("http://www.boxwakanda.site/servicios/cambiar_rol.php",colportor.getCodusuario(),colportor.getCodrol());
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -124,7 +122,7 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         colportor=listaColportores.get(posicion);
                                         progressBar.setVisibility(View.VISIBLE);
-                                        cambiarRol_Servicio("http://192.168.42.177/IDEC/cambiar_rol.php",colportor.getCodusuario(),colportor.getCodrol());
+                                        cambiarRol_Servicio("http://www.boxwakanda.site/servicios/cambiar_rol.php",colportor.getCodusuario(),colportor.getCodrol());
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -149,10 +147,11 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
         });
     }
 
-    private void buscarColportores_Serivicio(String URL) {
+    private void buscarColportores_Servicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                progressBar.setVisibility(View.INVISIBLE);
                 try {
                     JSONObject obj = new JSONObject(response);
                     JSONArray array = obj.getJSONArray("colportores");
@@ -168,7 +167,8 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                                 colportor.getInt("nroalumno"),
                                 colportor.getString("telefono"),
                                 colportor.getInt("codrol"),
-                                colportor.getInt("codcampo")
+                                colportor.getInt("codcampo"),
+                                Boolean.parseBoolean(colportor.getString("pasaporte"))
                         );
                         listaColportores.add(u);
                     }
@@ -182,6 +182,7 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(ListacolportoresadminActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         });
@@ -267,7 +268,4 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 }

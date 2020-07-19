@@ -66,4 +66,15 @@
     <string name="registro_password3">Ingrese la contraseña antigua</string>
     <string name="toast_contraseña">La contraseña no coincide con la anterior. Si no la recuerda contacte con el administrador</string>
     <string name="admin_pasaporte">Administración Pasaporte del colportor</string>
+    <string name="texto_confirmarmodificaciones">Está seguro que desea guardar las modificaciones?</string>
+    <string name="text_confirmacionpassword">Confirma el cambio de contraseña?</string>
+    <string name="texto_borraraspirante">Desesa eliminar el candidato a colportor?</string>
+    <string name="texto_crearaspirante">Desesa guardar el candidato a colportor?</string>
+    <string name="toast_aspiranteeliminado">Candidato eliminado</string>
+    <string name="toast_nuevopunto">Punto guardado</string>
+    <string name="title_activity_maps">Mapa</string>
+    <string name="ubicacion_actual">Ubicación actual</string>
+    <string name="ubicacion_desactivada">Ubicación deshabilitada. Por favor active la ubicación del celular</string>
+    <string name="texto_crearpunto">Desesa guardar el punto geográfico?</string>
+    <string name="pasaporte_user">Pasaporte del colportor</string>
 </resources>

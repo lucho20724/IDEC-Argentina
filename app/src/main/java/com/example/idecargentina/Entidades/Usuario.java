@@ -12,8 +12,9 @@ public class Usuario implements Serializable {
     String telefono;
     int codrol;
     int codcampo;
+    boolean pasaporte;
 
-    public Usuario(int codusuario, String nombre, String apellido, String mail, String password, int nroalumno, String telefono, int codrol, int codcampo) {
+    public Usuario(int codusuario, String nombre, String apellido, String mail, String password, int nroalumno, String telefono, int codrol, int codcampo, boolean pasaporte) {
         this.codusuario = codusuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -23,6 +24,7 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
         this.codrol = codrol;
         this.codcampo = codcampo;
+        this.pasaporte = pasaporte;
     }
 
     public Usuario() {
@@ -92,13 +94,15 @@ public class Usuario implements Serializable {
         this.codrol = codrol;
     }
 
-    public int getCodcampo() {
-        return codcampo;
+    public int getCodcampo() {return codcampo;
     }
-
     public void setCodcampo(int codcampo) {
         this.codcampo = codcampo;
     }
+
+    public boolean getPasaporte() { return pasaporte; }
+
+    public void setPasaporte(boolean pasaporte) {this.pasaporte = pasaporte;}
 }
 
 

@@ -51,7 +51,7 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
 
         listaCandidatos= new ArrayList<>();
         listViewCandidatos = (ListView) findViewById(R.id.listViewCandidatosAdmin);
-        buscarCandidatos_Serivicio("http://192.168.42.177/IDEC/buscar_candidatos.php");
+        buscarCandidatos_Servicio("http://www.boxwakanda.site/servicios/buscar_candidatos.php");
 
         listViewCandidatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,7 +65,7 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
         });
     }
 
-    private void buscarCandidatos_Serivicio(String URL) {
+    private void buscarCandidatos_Servicio(String URL) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -96,7 +96,8 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ListacandidatosadminActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListacandidatosadminActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ListacandidatosadminActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         });
 

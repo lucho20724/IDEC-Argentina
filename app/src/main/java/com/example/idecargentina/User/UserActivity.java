@@ -37,12 +37,9 @@ public class UserActivity extends AppCompatActivity {
 
         Boolean internet=fun.comprobarConexion(getApplicationContext());
 
-        if(modificado){
-            usuario = (Usuario)getIntent().getSerializableExtra("usuariomod");
+        if(modificado) usuario = (Usuario)getIntent().getSerializableExtra("usuariomod");
+        else usuario = (Usuario)getIntent().getSerializableExtra("usuario");
 
-        }else{
-            usuario = (Usuario)getIntent().getSerializableExtra("usuario");
-        }
         guardarPreferencias(usuario);
         txt_saludo.setText(getResources().getString(R.string.admin_saludo)+" "+ usuario.getNombre()+"!");
     }
@@ -69,7 +66,9 @@ public class UserActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnGeocolportaje_User:
-                Toast.makeText(getApplicationContext(),R.string.toast_proximamente,Toast.LENGTH_SHORT).show();
+                i=new Intent(this, MapsActivity.class);
+                i.putExtra("usuario",usuario);
+                startActivity(i);
                 break;
 
             case R.id.btnAdminColportores_Admin:

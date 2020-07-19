@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     if(!campo_mail.getText().toString().isEmpty() && !campo_password.getText().toString().isEmpty()){
                         progressBar.setVisibility(View.VISIBLE);
-                        validarUsuario_Servicio("http://192.168.42.177/IDEC/verificar_usuario.php");
+                        validarUsuario_Servicio("http://www.boxwakanda.site/servicios/verificar_usuario.php");
                     }else {
                         Toast.makeText(this,R.string.registro_toast_campos,Toast.LENGTH_SHORT).show();
                     }

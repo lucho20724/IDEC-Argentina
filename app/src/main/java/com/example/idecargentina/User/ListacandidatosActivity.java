@@ -61,7 +61,7 @@ public class ListacandidatosActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar)findViewById(R.id.prBar_Listacandidatosadmin);
 
-        buscarCandidatos_Serivicio("http://192.168.42.177/IDEC/buscar_candidatos.php");
+        buscarCandidatos_Servicio("http://www.boxwakanda.site/servicios/buscar_candidatos.php");
 
         eliminar = getIntent().getBooleanExtra("eliminar",false);
         editar = getIntent().getBooleanExtra("editar",false);
@@ -81,7 +81,7 @@ public class ListacandidatosActivity extends AppCompatActivity {
 
                 }else if(eliminar){
                     AlertDialog.Builder alerta = new AlertDialog.Builder(ListacandidatosActivity.this);
-                    alerta.setMessage("Desesa eliminar el candidato a colportor?")//TODO
+                    alerta.setMessage(R.string.texto_borraraspirante)
                             .setTitle(R.string.atencion)
                             .setCancelable(false)
                             .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
@@ -89,7 +89,7 @@ public class ListacandidatosActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     c=listaCandidatos.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    eliminarCanditado_Servicio("http://192.168.42.177/IDEC/eliminar_candidato.php",c.getCodcandidato());
+                                    eliminarCanditado_Servicio("http://www.boxwakanda.site/servicios/eliminar_candidato.php",c.getCodcandidato());
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -107,12 +107,11 @@ public class ListacandidatosActivity extends AppCompatActivity {
                     i.putExtra("candidato",c);
                     startActivity(i);
                 }
-
             }
         });
     }
 
-    private void buscarCandidatos_Serivicio(String URL){
+    private void buscarCandidatos_Servicio(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -165,7 +164,7 @@ public class ListacandidatosActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Candidato eliminado", Toast.LENGTH_SHORT).show(); //TODO
+                Toast.makeText(getApplicationContext(), R.string.toast_aspiranteeliminado, Toast.LENGTH_SHORT).show();
                 listViewCandidatos.setVisibility(View.INVISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     @Override

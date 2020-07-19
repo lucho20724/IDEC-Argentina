@@ -20,6 +20,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="etiqueta">
+        <item name="android:background">@drawable/fondo_botonesflotantes1</item>
+        <item name="android:textColor">#ffffff</item>
+
+    </style>
+
     <style name="AppThemeNoBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppThemeNoBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

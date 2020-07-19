@@ -43,7 +43,7 @@ public class ImagenActivity extends AppCompatActivity implements View.OnClickLis
 
     private int PICK_IMAGE_REQUEST = 1;
 
-    private String UPLOAD_URL ="http://192.168.42.177/IDEC/carga_imagen.php";
+    private String UPLOAD_URL ="www.boxwakanda.site/servicios/carga_imagen.php";
 
     private String KEY_IMAGEN = "foto";
     private String KEY_NOMBRE = "nombre";

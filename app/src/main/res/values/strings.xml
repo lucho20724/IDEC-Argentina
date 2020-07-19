@@ -59,6 +59,9 @@
     <!-- Contraseñaantigua-->
     <string name="registro_password3">Ingrese la contraseña antigua</string>
 
+    <!-- Confirmacion cambio password-->
+    <string name="text_confirmacionpassword">Confirma el cambio de contraseña?</string>
+
 
     <!-- Boton-->
     <string name="registro_boton">Guardar</string>
@@ -105,12 +108,17 @@
     <!-- Boton Administracion Pasaporte-->
     <string name="admin_pasaporte">Administración Pasaporte del colportor</string>
 
+    <!-- Boton Pasaporte colportor-->
+    <string name="pasaporte_user">Pasaporte del colportor</string>
 
     <!-- Boton Cambiar contraseña-->
     <string name="boton_contraseña">Cambiar contraseña</string>
 
-    <!-- Boton Cambiar contraseña-->
+    <!-- Boton Editar usuario-->
     <string name="texto_editusuario">Editar usuario</string>
+
+    <!-- Guardar modificaciones usuario-->
+    <string name="texto_confirmarmodificaciones">Está seguro que desea guardar las modificaciones?</string>
 
     <!-- Advertencia borrar colportor-->
     <string name="toast_borrar_colportor">¿Esta seguro que desea borrar el colportor seleccionado?</string>
@@ -187,6 +195,10 @@
     <string name="nuevoaspirante_alert_contenido">¿Deseas guardar otro candidato?</string>
     <string name="nuevoaspirante_toast_aspirantenuevo">Candidato creado</string>
 
+    <string name="texto_crearaspirante">Desesa guardar el candidato a colportor?</string>
+    <string name="texto_borraraspirante">Desesa eliminar el candidato a colportor?</string>
+    <string name="toast_aspiranteeliminado">Candidato eliminado</string>
+
     <string name="editaraspirante_confirmacion">¿Está seguro de editar el candidato a colportor?</string>
     <string name="nuevoaspirante_confirmacion">¿Está seguro de guardar el candidato a colportor?</string>
 
@@ -197,6 +209,13 @@
     <!--Ver ASPIRANTE ACTIVITY-->
     <!-- ver aspirante-->
     <string name="vercandidato_titulo">Seleccione un candidato a colportor</string>
+    <string name="title_activity_maps">Mapa</string>
+
+    <!--Nuevo punto y mapa ACTIVITY-->
+    <string name="toast_nuevopunto">Punto guardado</string>
+    <string name="ubicacion_actual">Ubicación actual</string>
+    <string name="ubicacion_desactivada">Ubicación deshabilitada. Por favor active la ubicación del celular</string>
+    <string name="texto_crearpunto">Desesa guardar el punto geográfico?</string>
 
 
 </resources>

@@ -100,14 +100,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAdminPasaporte_Admin" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAdminPasaporte_Admin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:drawableLeft="@drawable/admin_pasaporte"
         android:background="@drawable/boton_btnmenuppal"
+        android:drawableLeft="@drawable/admin_pasaporte"
+        android:onClick="onClick"
         android:text="@string/admin_pasaporte"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,4 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".Admin.PasaporteadminActivity">
 
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="194dp"
+        android:layout_height="139dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_pasaporte" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administracion Pasaporte colportor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+
+    <Button
+        android:id="@+id/btnHabilitar_AdminPasaporte"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/boton_btnmenuppal"
+        android:drawableLeft="@drawable/ic_nuevo"
+        android:onClick="onClick"
+        android:text="Habilitar pasaporte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <Button
+        android:id="@+id/btnDeshabilitar_AdminPasaporte"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/boton_btnmenuppal"
+        android:drawableLeft="@drawable/ic_borrar"
+        android:onClick="onClick"
+        android:text="Deshabilitar pasaporte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHabilitar_AdminPasaporte" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,6 +65,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editarusuario);
 
         u = (Usuario)getIntent().getSerializableExtra("usuario");
+
         campo_nombre = (EditText)findViewById(R.id.edNombre_modusuario);
         campo_apellido = (EditText)findViewById(R.id.edApellido_modusuario);
         campo_telefono = (EditText)findViewById(R.id.edTelefono_modusuario);
@@ -81,7 +82,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
         fun = new Funciones();
 
         listaCampos = new ArrayList<>();
-        buscarCampos_Servicio("http://192.168.42.177/IDEC/buscar_campos.php");
+        buscarCampos_Servicio("http://www.boxwakanda.site/servicios/buscar_campos.php");
 
         spCampos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -94,7 +95,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
             }
         });
 
-        completarCampos();
+        //completarCampos(); -- Este metodo que completa los campos del formulario incluido el spinner se lo llama en el servicio de obtener campos
     }
 
     public void onClick(View v){
@@ -102,7 +103,11 @@ public class EditarusuarioActivity extends AppCompatActivity {
         switch (v.getId()){
             case R.id.btnGuardar_modusuario:
                 i= new Intent(this, MainActivity.class);
-                if(!validarCampos()){
+
+                boolean conectado=fun.comprobarConexion(getApplicationContext());
+                if(!conectado)
+                    Toast.makeText(getApplicationContext(), R.string.toast_internet,Toast.LENGTH_SHORT).show();
+                else if(!validarCampos()){
                     Toast.makeText(this, R.string.registro_toast_campos, Toast.LENGTH_SHORT).show();
                 }else if(!validarMail(campo_mail.getText().toString())){
                     Toast.makeText(this, R.string.registro_toast_mail, Toast.LENGTH_SHORT).show();
@@ -115,14 +120,14 @@ public class EditarusuarioActivity extends AppCompatActivity {
                 }
                 else{
                     AlertDialog.Builder alerta = new AlertDialog.Builder(EditarusuarioActivity.this);
-                    alerta.setMessage("Desesa guardar las modificaciones?")//TODO
+                    alerta.setMessage(R.string.texto_confirmarmodificaciones)
                             .setTitle(R.string.atencion)
                             .setCancelable(false)
                             .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     progressBar.setVisibility(View.VISIBLE);
-                                    editarUsuario_Servicio("http://192.168.42.177/IDEC/editar_usuario.php");
+                                    editarUsuario_Servicio("http://www.boxwakanda.site/servicios/editar_usuario.php");
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -146,13 +151,13 @@ public class EditarusuarioActivity extends AppCompatActivity {
         StringRequest stringRequest= new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                obtenerUserMod_Servicio("http://192.168.42.177/IDEC/obtener_usuario_id.php");
+                obtenerUserMod_Servicio("http://www.boxwakanda.site/servicios/obtener_usuario_id.php");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(), R.string.toast_internet,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), R.string.toast_internet,Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -168,13 +173,8 @@ public class EditarusuarioActivity extends AppCompatActivity {
                 return parametros;
             }
         };
-
         RequestQueue rq = Volley.newRequestQueue(this);
-        try{
-            rq.add(stringRequest);
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-        }
+        rq.add(stringRequest);
     }
 
     private void obtenerUserMod_Servicio(String URL){
@@ -249,7 +249,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
     private boolean validarSelectCampo(){
         boolean valido=false;
         try {
-            if (!spCampos.getSelectedItem().toString().equals("Seleccione el campo donde vas a colportar")) {//TODO
+            if (!spCampos.getSelectedItem().toString().equals(getApplicationContext().getResources().getString(R.string.registro_campo))) {
                 valido = true;
             } else if (u.getCodrol() == 0 || u.getCodrol() == 1) {
                 valido = true;
@@ -260,7 +260,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
         return valido;
     }
 
-    private void buscarCampos_Servicio(String URL){
+    private void buscarCampos_Servicio(String URL){//para llenar el spinner
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -280,6 +280,8 @@ public class EditarusuarioActivity extends AppCompatActivity {
                     obtenerLista();
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_spinner_item,listaInformacion);
                     spCampos.setAdapter(adapter);
+
+                    completarCampos();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

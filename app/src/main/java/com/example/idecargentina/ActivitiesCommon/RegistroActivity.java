@@ -31,6 +31,7 @@ import com.example.idecargentina.Entidades.Candidato;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.R;
 import com.example.idecargentina.User.UserActivity;
+import com.example.idecargentina.Utilidades.Funciones;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -55,6 +56,8 @@ public class RegistroActivity extends AppCompatActivity {
 
     String responseGlobal;
 
+    Funciones fun;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +77,10 @@ public class RegistroActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.INVISIBLE);
 
+        fun = new Funciones();
+
         listaCampos = new ArrayList<>();
-        buscarCampos_Servicio("http://192.168.42.177/IDEC/buscar_campos.php");
+        buscarCampos_Servicio("http://www.boxwakanda.site/servicios/buscar_campos.php");
         spCampos.setSelection(1);
 
         spCampos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -86,7 +91,6 @@ public class RegistroActivity extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
@@ -104,7 +108,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
         else{
             progressBar.setVisibility(View.VISIBLE);
-            crearUsuario_Servicio("http://192.168.42.177/IDEC/insertar_usuario.php");
+            crearUsuario_Servicio("http://www.boxwakanda.site/servicios/insertar_usuario.php");
         }
     }
 
@@ -145,7 +149,7 @@ public class RegistroActivity extends AppCompatActivity {
 
     private boolean validarSelectCampo(){
         boolean valido=false;
-        if(!spCampos.getSelectedItem().toString().equals("Seleccione un campo de colportaje")){
+        if(!spCampos.getSelectedItem().toString().equals(R.string.registro_campo)){
             valido=true;
         }else{
             campo_campo.setBackgroundResource(R.drawable.edit_error);
@@ -169,7 +173,8 @@ public class RegistroActivity extends AppCompatActivity {
                                 .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        validarUsuario_Servicio("http://192.168.42.177/IDEC/verificar_usuario.php");
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        validarUsuario_Servicio("http://www.boxwakanda.site/servicios/verificar_usuario.php");
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -249,7 +254,7 @@ public class RegistroActivity extends AppCompatActivity {
     }
     private void obtenerLista() {
         listaInformacion = new ArrayList<String>();
-        listaInformacion.add(String.valueOf(R.string.registro_campo));
+        listaInformacion.add(String.valueOf(getResources().getString(R.string.registro_campo)));
         for (int i=0; i<listaCampos.size();i++){
             listaInformacion.add(listaCampos.get(i).getAbreviatura());
         }
@@ -265,7 +270,9 @@ public class RegistroActivity extends AppCompatActivity {
                     public void run() {
                         progressBar.setVisibility(View.INVISIBLE);
                         if(!responseGlobal.isEmpty()){
-                            Usuario u = obtenerUsuario(responseGlobal);
+
+                            Usuario u =fun.obtenerUsuario(responseGlobal, getApplicationContext());
+                            //Usuario u = obtenerUsuario(responseGlobal);
                             guardarPreferencias(u);
                             Intent i;
 
@@ -275,6 +282,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 i = new Intent(getApplicationContext(), UserActivity.class);
                             }
                             i.putExtra("usuario",u);
+                            progressBar.setVisibility(View.INVISIBLE);
                             startActivity(i);
                             finish();
                         }else{
@@ -314,6 +322,7 @@ public class RegistroActivity extends AppCompatActivity {
             u.setNroalumno(jsonObject.getInt("nroalumno"));
             u.setTelefono(jsonObject.getString("telefono"));
             u.setCodrol(jsonObject.getInt("codrol"));
+            u.setCodcampo(jsonObject.getInt("codcampo"));
 
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();

@@ -44,7 +44,7 @@ public class InformecandidatoadminActivity extends AppCompatActivity {
         u = (Usuario)getIntent().getSerializableExtra("usuario");
         c = (Candidato)getIntent().getSerializableExtra("candidato");
 
-        buscarColportor_Servicio("http://192.168.42.177/IDEC/buscar_colportor.php", c.getCodusuario());
+        buscarColportor_Servicio("http://www.boxwakanda.site/servicios/buscar_colportor.php", c.getCodusuario());
 
         txtNombre.setText(c.getNombre());
         txtApellido.setText(c.getApellido());
