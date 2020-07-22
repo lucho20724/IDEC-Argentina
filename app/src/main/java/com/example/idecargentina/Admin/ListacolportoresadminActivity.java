@@ -64,6 +64,8 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
         pasaporte = getIntent().getBooleanExtra("pasaporte",false);
 
         progressBar.setVisibility(View.VISIBLE);
+        progressBar.bringToFront();
+
         buscarColportores_Servicio("http://www.boxwakanda.site/servicios/buscar_colportores.php");
 
 
@@ -133,7 +135,6 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                                 });
                         alerta.show();
                     }
-
                 }else if(pasaporte){
                     Toast.makeText(ListacolportoresadminActivity.this, "pasaporte", Toast.LENGTH_SHORT).show();
                 }
@@ -202,6 +203,7 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent i = new Intent(getApplicationContext(), ColportoresadminActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         i.putExtra("usuario",u);
                         startActivity(i);
                         finish();
@@ -236,9 +238,6 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(getApplicationContext(), ColportoresadminActivity.class);
-                        i.putExtra("usuario",u);
-                        startActivity(i);
                         finish();
                     }
                 }, 2000);

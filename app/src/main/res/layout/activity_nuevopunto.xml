@@ -54,16 +54,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout7"
-        android:layout_width="372dp"
-        android:layout_height="168dp"
+        android:layout_width="379dp"
+        android:layout_height="335dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblLongitud">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout20"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="301dp"
+            android:layout_height="258dp"
             app:counterEnabled="true"
             app:counterMaxLength="200"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,9 +73,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edDescripcion_punto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_descripcion"
-                android:hint="Descrpicion"
+                android:layout_height="218dp"
+                android:gravity="top"
+                android:hint="@string/texto_Descripcion"
                 android:maxLength="200" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,15 +86,16 @@
             app:counterEnabled="true"
             app:counterMaxLength="20"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edTitulo_punto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_titulo"
-                android:hint="Titulo"
-                android:maxLength="20" /> <!-- TODO hace un espacio mas grande para la descripcion -->
+                android:hint="@string/texto_titulo"
+                android:maxLength="20" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

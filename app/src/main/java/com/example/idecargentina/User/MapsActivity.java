@@ -7,8 +7,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -25,9 +23,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.idecargentina.ActivitiesCommon.LoginActivity;
-import com.example.idecargentina.Admin.AdminActivity;
-import com.example.idecargentina.Admin.ListacolportoresadminActivity;
 import com.example.idecargentina.Entidades.Punto;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.R;
@@ -60,7 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     ArrayList<Punto> listaPuntos;
 
-    FloatingActionButton btnMiubicacion, btnGuardarubicacion, btnVerPuntos;
+    FloatingActionButton btnMiubicacion, btnGuardarubicacion, btnVerPuntos, btnOpciones;
 
     ProgressBar progressBar;
 
@@ -82,10 +77,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         progressBar.setVisibility(View.INVISIBLE);
         progressBar.bringToFront();
 
-
         btnMiubicacion = (FloatingActionButton)findViewById(R.id.btnUbicacion_Maps);
         btnGuardarubicacion = (FloatingActionButton)findViewById(R.id.btnGuardarpunto_Maps);
         btnVerPuntos = (FloatingActionButton)findViewById(R.id.btnVerpuntos_Maps);
+        btnOpciones = (FloatingActionButton)findViewById(R.id.btnOpciones_Maps);
+
 
         btnMiubicacion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +107,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         buscarPuntos_Servicio("http://www.boxwakanda.site/servicios/buscar_puntos_usuario.php");
                     }
                 },3000);
+            }
+        });
 
+        btnOpciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), OpcionespuntoActivity.class);
+                i.putExtra("usuario",u);
+                startActivity(i);
             }
         });
     }
@@ -125,8 +129,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
     }
-
-
 
     public void agregarMarcador(double lat, double lng) {
         LatLng coordenadas = new LatLng(lat, lng);
@@ -195,7 +197,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         rq.add(stringRequest);
     }
 
-
     private void agregarPuntosGuardados(){
         LatLng coordenadas;
         String titulomarcador="";
@@ -218,7 +219,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String latitud="";
         String longitud="";
 
-
         //Obtener direccion
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -234,15 +234,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             longitud=String.valueOf(location.getLongitude());
         }
 
-        ArrayList<String> coordenadas = new ArrayList<>();
-        coordenadas.add(latitud);
-        coordenadas.add(longitud);
+        if(latitud.equals("") || longitud.equals("")){
+            Toast.makeText(this, R.string.boton_guardarpunto, Toast.LENGTH_SHORT).show();
+        }else{
+            ArrayList<String> coordenadas = new ArrayList<>();
+            coordenadas.add(latitud);
+            coordenadas.add(longitud);
 
-        Intent i = new Intent(getApplicationContext(),NuevopuntoActivity.class);
-        i.putStringArrayListExtra("coordenadas",coordenadas);
-        i.putExtra("usuario",u);
-        startActivity(i);
-
+            Intent i = new Intent(getApplicationContext(),NuevopuntoActivity.class);
+            i.putStringArrayListExtra("coordenadas",coordenadas);
+            i.putExtra("usuario",u);
+            startActivity(i);
+        }
     }
 
     private void actualizarUbicacion(Location location) {
@@ -252,7 +255,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             agregarMarcador(lat, lng);
         }
     }
-
 
     private void miUbicacion() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -272,17 +274,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         public void onLocationChanged(Location location) {
             actualizarUbicacion(location);
         }
-
         @Override
         public void onStatusChanged(String s, int i, Bundle bundle) {
 
         }
-
         @Override
         public void onProviderEnabled(String s) {
 
         }
-
         @Override
         public void onProviderDisabled(String s) {
             Toast.makeText(getApplicationContext(),R.string.ubicacion_desactivada,Toast.LENGTH_LONG).show();

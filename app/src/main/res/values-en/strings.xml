@@ -37,7 +37,7 @@
     <string name="influencer_compromisotexto">Pray and act, being present in the lives of my friends and colleagues, so that they know about the missionary work of canvassing and motivate them in different ways, so that they are part of a campaign during the holidays</string>
     <string name="boton_agregar">Add</string>
     <string name="boton_editar">Edit</string>
-    <string name="boton_borrar">Borrar</string>
+    <string name="boton_borrar">Delete</string>
     <string name="nuevoaspirante_titulo">Create new colportor candidate</string>
     <string name="nuevoaspirante_alert_titulo">Created candidate!</string>
     <string name="nuevoaspirante_alert_contenido">Do you want to save another candidate?</string>
@@ -77,4 +77,26 @@
     <string name="ubicacion_desactivada">Location disabled. Please activate the location of the cell phone</string>
     <string name="texto_crearpunto">Do you want to save the geographical point?</string>
     <string name="pasaporte_user">Colportor passport</string>
+    <string name="verpunto_titulo">Select a geographical point</string>
+    <string name="pasaporteadmin_habilitar">Do you want to enable the passport to the selected colporteur?</string>
+    <string name="pasaporteadmin_deshabilitar">Do you want to disable the passport to the selected colporteur?</string>
+    <string name="toast_punto">Do you want to delete the point?</string>
+    <string name="toast_puntoeliminado">Deleted point</string>
+    <string name="txt_selectcolportor">Select a colportor</string>
+    <string name="txt_opciones">Colportaje settings</string>
+    <string name="texto_latitud">Latitude</string>
+    <string name="texto_longitud">Length</string>
+    <string name="texto_titulo">Title</string>
+    <string name="texto_Descripcion">Description</string>
+    <string name="texto_editarpunto">Do you want to edit the geographical point?</string>
+    <string name="texto_Puntomodificado">Modified point</string>
+    <string name="texto_campoelegido">Selected field</string>
+    <string name="pasaporte_denegado">Passport denied</string>
+    <string name="pasaporte_habilitado">Passport enabled</string>
+    <string name="boton_ubicacion_maps">My location</string>
+    <string name="boton_guardarpunto_maps">Save point</string>
+    <string name="boton_verpuntos_maps">View saved points</string>
+    <string name="boton_masopciones_maps">More options</string>
+    <string name="pasaporte_actualizado">Updated passport</string>
+    <string name="boton_guardarpunto">To save a location you must first obtain it. Press \"my location\" first</string>
 </resources>

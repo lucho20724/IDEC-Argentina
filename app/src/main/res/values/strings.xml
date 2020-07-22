@@ -62,6 +62,9 @@
     <!-- Confirmacion cambio password-->
     <string name="text_confirmacionpassword">Confirma el cambio de contraseña?</string>
 
+    <!-- Confirmacion cambio password-->
+    <string name="texto_campoelegido">Campo elegido</string>
+
 
     <!-- Boton-->
     <string name="registro_boton">Guardar</string>
@@ -110,6 +113,21 @@
 
     <!-- Boton Pasaporte colportor-->
     <string name="pasaporte_user">Pasaporte del colportor</string>
+
+    <!-- Boton habilitar colportor-->
+    <string name="pasaporteadmin_habilitar">Desea habilitar el pasaporte al colportor seleccionado?</string>
+
+    <!-- Boton deshabilitar colportor-->
+    <string name="pasaporteadmin_deshabilitar">Desea deshabilitar el pasaporte al colportor seleccionado?</string>
+
+    <!-- Pasaporte denegado-->
+    <string name="pasaporte_denegado">Pasaporte denegado</string>
+
+    <!-- Pasaporte habilitado-->
+    <string name="pasaporte_habilitado">Pasaporte habilitado</string>
+
+    <!-- Pasaporte habilitado-->
+    <string name="pasaporte_actualizado">Pasaporte actualizado</string>
 
     <!-- Boton Cambiar contraseña-->
     <string name="boton_contraseña">Cambiar contraseña</string>
@@ -209,13 +227,44 @@
     <!--Ver ASPIRANTE ACTIVITY-->
     <!-- ver aspirante-->
     <string name="vercandidato_titulo">Seleccione un candidato a colportor</string>
+
     <string name="title_activity_maps">Mapa</string>
+
+    <string name="boton_ubicacion_maps">Mi ubicación</string>
+    <string name="boton_guardarpunto_maps">Guardar punto</string>
+    <string name="boton_verpuntos_maps">Ver puntos guardados</string>
+    <string name="boton_masopciones_maps">Más opciones</string>
+
+    <string name="boton_guardarpunto">Para guardar una ubicacion primero debe obtenerla. Presione "mi ubicación" primero</string>
+
+
+
+
+    <string name="verpunto_titulo">Seleccione un punto geográfico</string>
 
     <!--Nuevo punto y mapa ACTIVITY-->
     <string name="toast_nuevopunto">Punto guardado</string>
     <string name="ubicacion_actual">Ubicación actual</string>
     <string name="ubicacion_desactivada">Ubicación deshabilitada. Por favor active la ubicación del celular</string>
     <string name="texto_crearpunto">Desesa guardar el punto geográfico?</string>
+
+    <string name="texto_editarpunto">Desesa editar el punto geográfico?</string>
+
+    <string name="toast_punto">Desesa borrar el punto?</string>
+
+    <string name="toast_puntoeliminado">Punto eliminado</string>
+
+    <string name="txt_selectcolportor">Seleccione un colportor</string>
+
+    <string name="txt_opciones">Opciones de colportaje</string>
+
+    <string name="texto_latitud">Latitud</string>
+    <string name="texto_longitud">Longitud</string>
+    <string name="texto_titulo">Título</string>
+    <string name="texto_Descripcion">Descripción</string>
+
+    <string name="texto_Puntomodificado">Punto modificado</string>
+
 
 
 </resources>

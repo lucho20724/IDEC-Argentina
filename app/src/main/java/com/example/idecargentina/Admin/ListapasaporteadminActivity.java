@@ -62,6 +62,8 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
         habilitar = getIntent().getBooleanExtra("habilitar",false);
 
         progressBar.setVisibility(View.VISIBLE);
+        progressBar.bringToFront();
+
         buscarPasaportes_Servicio("http://www.boxwakanda.site/servicios/buscar_pasaportes.php");
 
         listViewPasaporte.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -70,7 +72,7 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
                 posicion=pos;
                 if(habilitar){
                     AlertDialog.Builder alerta = new AlertDialog.Builder(ListapasaporteadminActivity.this);
-                    alerta.setMessage("Desea habilitar el pasaporte al colportor seleccionado?")//TODO
+                    alerta.setMessage(R.string.pasaporteadmin_habilitar)
                             .setTitle(R.string.atencion)
                             .setCancelable(false)
                             .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
@@ -90,7 +92,7 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
                     alerta.show();
                 }else{
                     AlertDialog.Builder alerta = new AlertDialog.Builder(ListapasaporteadminActivity.this);
-                    alerta.setMessage("Desea deshabilitar el pasaporte al colportor seleccionado?")//TODO
+                    alerta.setMessage(R.string.pasaporteadmin_deshabilitar)
                             .setTitle(R.string.atencion)
                             .setCancelable(false)
                             .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
@@ -171,7 +173,8 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 String respuesta=response;
-                Toast.makeText(getApplicationContext(), R.string.toast_rol_actualizado, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.pasaporte_actualizado, Toast.LENGTH_SHORT).show();
+
                 listViewPasaporte.setVisibility(View.INVISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     @Override

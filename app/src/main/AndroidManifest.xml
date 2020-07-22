@@ -20,8 +20,20 @@
         android:roundIcon="@mipmap/ic_index"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoBar">
-        <activity android:name=".Admin.ListapasaporteadminActivity"></activity>
-        <activity android:name=".User.NuevopuntoActivity" />
+        <activity android:name=".Informes.InformepuntoActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".User.OpcionespuntoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".User.ListapuntosActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Admin.ListapasaporteadminActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".User.NuevopuntoActivity"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,66 +48,94 @@
 
         <activity
             android:name=".User.MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".User.PasaporteuserActivity" />
-        <activity android:name=".Admin.PasaporteadminActivity" />
-        <activity android:name=".ActivitiesCommon.PasswordActivity" />
-        <activity android:name=".ActivitiesCommon.EditarusuarioActivity" />
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".User.PasaporteuserActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Admin.PasaporteadminActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ActivitiesCommon.PasswordActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ActivitiesCommon.EditarusuarioActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".Informes.InformecolportorActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Admin.ListacolportoresadminActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Admin.ColportoresadminActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Informes.InformecandidatoadminActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Admin.ListacandidatosadminActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Admin.InfluenceradminActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Informes.InformecandidatoActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".User.ListacandidatosActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".User.NuevocandidatoActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".User.InfluencerActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ImagenActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Admin.AdminActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".User.UserActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ActivitiesCommon.LoginActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ActivitiesCommon.InfoActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ActivitiesCommon.RegistroActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name=".ActivitiesCommon.MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".ActivitiesCommon.CargaActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

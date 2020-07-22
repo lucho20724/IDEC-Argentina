@@ -1,13 +1,15 @@
 package com.example.idecargentina.Entidades;
 
-public class Punto {
-    int codcampo;
+import java.io.Serializable;
+
+public class Punto implements Serializable {
+    int codpunto;
     double latitud, longitud;
     String titulo, descripcion;
     int codusuario;
 
-    public Punto(int codcampo, double latitud, double longitud, String titulo, String descripcion, int codusuario) {
-        this.codcampo = codcampo;
+    public Punto(int codpunto, double latitud, double longitud, String titulo, String descripcion, int codusuario) {
+        this.codpunto = codpunto;
         this.latitud = latitud;
         this.longitud = longitud;
         this.titulo = titulo;
@@ -18,12 +20,12 @@ public class Punto {
     public Punto() {
     }
 
-    public int getCodcampo() {
-        return codcampo;
+    public int getcodpunto() {
+        return codpunto;
     }
 
-    public void setCodcampo(int codcampo) {
-        this.codcampo = codcampo;
+    public void setcodpunto(int codpunto) {
+        this.codpunto = codpunto;
     }
 
     public double getLatitud() {

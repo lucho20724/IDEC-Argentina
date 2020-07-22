@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 public class NuevopuntoActivity extends AppCompatActivity {
     TextView txt_latitud, txt_longitud;
     ArrayList<String> coordenadas;
@@ -43,7 +46,7 @@ public class NuevopuntoActivity extends AppCompatActivity {
 
         coordenadas = (ArrayList<String>) getIntent().getStringArrayListExtra("coordenadas");
         progressBar = (ProgressBar)findViewById(R.id.prBar_punto);
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(INVISIBLE);
 
 
         campo_titulo = (EditText)findViewById(R.id.edTitulo_punto);
@@ -66,6 +69,7 @@ public class NuevopuntoActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        progressBar.setVisibility(VISIBLE);
                         crearPunto_Servicio("http://www.boxwakanda.site/servicios/insertar_punto.php");
                     }
                 })
@@ -82,9 +86,11 @@ public class NuevopuntoActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                progressBar.setVisibility(INVISIBLE);
                 Toast.makeText(NuevopuntoActivity.this, R.string.toast_nuevopunto, Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getApplicationContext(),MapsActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.putExtra("usuario",u);
                 startActivity(i);
                 finish();
@@ -92,7 +98,8 @@ public class NuevopuntoActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               Toast.makeText(getApplicationContext(),R.string.toast_internet, Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(INVISIBLE);
+                Toast.makeText(getApplicationContext(),R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

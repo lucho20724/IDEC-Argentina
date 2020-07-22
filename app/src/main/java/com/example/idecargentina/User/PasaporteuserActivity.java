@@ -51,10 +51,10 @@ public class PasaporteuserActivity extends AppCompatActivity {
         boolean passport=u.getPasaporte();
 
         if(u.getPasaporte()) {
-            txtPasaporte.setText("PASAPORTE HABILITADO");
+            txtPasaporte.setText(getResources().getString(R.string.pasaporte_habilitado));
             txtPasaporte.setTextColor(Color.GREEN);
         }else {
-            txtPasaporte.setText("PASAPORTE DENEGADO");
+            txtPasaporte.setText(getResources().getString(R.string.pasaporte_denegado));
             txtPasaporte.setTextColor(Color.RED);
         }
 

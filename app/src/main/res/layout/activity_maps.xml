@@ -45,31 +45,40 @@
         app:fab_addButtonColorPressed="@color/colorPrimaryDark">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnOpciones_Maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#FFFFFF"
+            app:fab_icon="@drawable/ic_masopciones"
+            app:fab_size="normal"
+            app:fab_title="@string/boton_masopciones_maps" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnUbicacion_Maps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="?attr/colorAccent"
+            app:fab_colorNormal="#FFFFFF"
             app:fab_icon="@drawable/ic_ubicacion"
             app:fab_size="normal"
-            app:fab_title="Mi ubicación" />
+            app:fab_title="@string/boton_ubicacion_maps" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnGuardarpunto_Maps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="?attr/colorAccent"
+            app:fab_colorNormal="#FFFFFF"
             app:fab_icon="@drawable/ic_guardarubicacion"
             app:fab_size="normal"
-            app:fab_title="Guardar punto" />
+            app:fab_title="@string/boton_guardarpunto_maps" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnVerpuntos_Maps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="?attr/colorAccent"
+            app:fab_colorNormal="#FFFFFF"
             app:fab_icon="@drawable/ic_ver"
             app:fab_size="normal"
-            app:fab_title="Ver puntos guardados" />
+            app:fab_title="@string/boton_verpuntos_maps" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

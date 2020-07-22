@@ -22,8 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.idecargentina.Entidades.Candidato;
+import com.example.idecargentina.Entidades.Punto;
 import com.example.idecargentina.Entidades.Usuario;
-import com.example.idecargentina.Informes.InformecandidatoActivity;
+import com.example.idecargentina.Informes.InformepuntoActivity;
 import com.example.idecargentina.R;
 
 import org.json.JSONArray;
@@ -34,65 +35,70 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ListacandidatosActivity extends AppCompatActivity {
+public class ListapuntosActivity extends AppCompatActivity {
 
     Usuario u;
-    Candidato c;
-    boolean eliminar, editar;
-    ListView listViewCandidatos;
+    Punto p;
+    boolean eliminar, editar, ver;
+
+    ListView listViewPuntos;
 
     ProgressBar progressBar;
-
     String responseglobal;
 
     int posicion;
 
-    ArrayList<Candidato> listaCandidatos;
+    ArrayList<Punto> listaPuntos;
     ArrayList<String> listaInformacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listacandidatos);
+        setContentView(R.layout.activity_listapuntos);
 
-        listViewCandidatos = (ListView) findViewById(R.id.listViewCandidatos);
+        listViewPuntos = (ListView) findViewById(R.id.listViewPuntosUser);
         u = (Usuario)getIntent().getSerializableExtra("usuario");
-        listaCandidatos= new ArrayList<>();
+        listaPuntos= new ArrayList<>();
 
-        progressBar = (ProgressBar)findViewById(R.id.prBar_Listacandidatosadmin);
-
+        progressBar = (ProgressBar)findViewById(R.id.prBar_Listapuntosuser);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
 
-        buscarCandidatos_Servicio("http://www.boxwakanda.site/servicios/buscar_candidatos.php");
+        buscarPuntos_Servicio("http://www.boxwakanda.site/servicios/buscar_puntos_usuario.php");
 
         eliminar = getIntent().getBooleanExtra("eliminar",false);
         editar = getIntent().getBooleanExtra("editar",false);
+        ver = getIntent().getBooleanExtra("ver",false);
 
-
-        listViewCandidatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewPuntos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 posicion=pos;
-                if(editar){
-                    Intent i = new Intent(getApplicationContext(), NuevocandidatoActivity.class);
-                    c=listaCandidatos.get(pos);
-                    i.putExtra("usuario",u);
-                    i.putExtra("candidato",c);
-                    i.putExtra("editar",true);
-                    startActivity(i);
+                p=listaPuntos.get(posicion);
 
+                if(editar){
+                    Intent i = new Intent(getApplicationContext(), InformepuntoActivity.class);
+                    i.putExtra("editar",editar);
+                    i.putExtra("usuario",u);
+                    i.putExtra("punto",p);
+                    startActivity(i);
+                }else if(ver){
+                    Intent i = new Intent(getApplicationContext(), InformepuntoActivity.class);
+                    i.putExtra("ver",ver);
+                    i.putExtra("usuario",u);
+                    i.putExtra("punto",p);
+                    startActivity(i);
                 }else if(eliminar){
-                    AlertDialog.Builder alerta = new AlertDialog.Builder(ListacandidatosActivity.this);
-                    alerta.setMessage(R.string.texto_borraraspirante)
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(ListapuntosActivity.this);
+                    alerta.setMessage(R.string.toast_punto)
                             .setTitle(R.string.atencion)
                             .setCancelable(false)
                             .setPositiveButton(R.string.registro_alert_si, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    c=listaCandidatos.get(posicion);
+                                    p=listaPuntos.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    eliminarCanditado_Servicio("http://www.boxwakanda.site/servicios/eliminar_candidato.php",c.getCodcandidato());
+                                    eliminarPunto_Servicio("http://www.boxwakanda.site/servicios/eliminar_punto.php",p.getcodpunto());
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -103,18 +109,11 @@ public class ListacandidatosActivity extends AppCompatActivity {
                             });
                     alerta.show();
                 }
-                else{
-                    Intent i = new Intent(getApplicationContext(), InformecandidatoActivity.class);
-                    c=listaCandidatos.get(pos);
-                    i.putExtra("usuario",u);
-                    i.putExtra("candidato",c);
-                    startActivity(i);
-                }
             }
         });
     }
 
-    private void buscarCandidatos_Servicio(String URL){
+    private void buscarPuntos_Servicio(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -123,33 +122,33 @@ public class ListacandidatosActivity extends AppCompatActivity {
                         responseglobal=response;
                         try {
                             JSONObject obj = new JSONObject(response);
-                            JSONArray array = obj.getJSONArray("aspirantes");
+                            JSONArray array = obj.getJSONArray("puntos");
 
                             for(int i=0;i<array.length();i++){
-                                JSONObject candidato = array.getJSONObject(i);
-                                Candidato c = new Candidato(
-                                        candidato.getInt("codaspirante"),
-                                        candidato.getString("nombre"),
-                                        candidato.getString("apellido"),
-                                        candidato.getString("mail"),
-                                        candidato.getString("telefono"),
-                                        candidato.getInt("codusuario")
+                                JSONObject punto = array.getJSONObject(i);
+                                Punto p = new Punto(
+                                        punto.getInt("codpunto"),
+                                        punto.getDouble("latitud"),
+                                        punto.getDouble("longitud"),
+                                        punto.getString("titulo"),
+                                        punto.getString("descripcion"),
+                                        punto.getInt("codusuario")
                                 );
-                                listaCandidatos.add(c);
+                                listaPuntos.add(p);
                             }
                             obtenerLista();
                             ArrayAdapter<String> adaptador = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, listaInformacion);
-                            listViewCandidatos.setAdapter(adaptador);
+                            listViewPuntos.setAdapter(adaptador);
                         } catch (JSONException e) {
-                            progressBar.setVisibility(View.INVISIBLE);
                             e.printStackTrace();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(ListacandidatosActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListapuntosActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -159,26 +158,20 @@ public class ListacandidatosActivity extends AppCompatActivity {
                 return parametros;
             }
         };
-
         RequestQueue rq= Volley.newRequestQueue(this);
         rq.add(stringRequest);
     }
 
-
-    private void eliminarCanditado_Servicio(String URL, int codcandidato){
-        final int codcandidato_eliminar = codcandidato; //variable global para el metodo getParams
+    private void eliminarPunto_Servicio(String URL, int codpunto){
+        final int codpunto_eliminar = codpunto; //variable global para el metodo getParams
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), R.string.toast_aspiranteeliminado, Toast.LENGTH_SHORT).show();
-                listViewCandidatos.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), R.string.toast_puntoeliminado, Toast.LENGTH_SHORT).show();
+                listViewPuntos.setVisibility(View.INVISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(getApplicationContext(),InfluencerActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        i.putExtra("usuario",u);
-                        startActivity(i);
                         finish();
                     }
                 }, 2000);
@@ -186,13 +179,13 @@ public class ListacandidatosActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ListacandidatosActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListapuntosActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("codcandidato",String.valueOf(codcandidato_eliminar));
+                parametros.put("codpunto",String.valueOf(codpunto_eliminar));
                 return parametros;
             }
         };
@@ -202,8 +195,8 @@ public class ListacandidatosActivity extends AppCompatActivity {
 
     private void obtenerLista() {
         listaInformacion = new ArrayList<String>();
-        for (int i=0; i<listaCandidatos.size();i++){
-            listaInformacion.add(listaCandidatos.get(i).getNombre()+"  "+listaCandidatos.get(i).getApellido());
+        for (int i=0; i<listaPuntos.size();i++){
+            listaInformacion.add(listaPuntos.get(i).getTitulo()+" - lat:"+listaPuntos.get(i).getLatitud()+" | long:"+listaPuntos.get(i).getLongitud());
         }
     }
 }

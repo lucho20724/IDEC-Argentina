@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -42,12 +43,19 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
     ArrayList<Candidato> listaCandidatos;
     ArrayList<String> listaInformacion;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listacandidatosadmin);
 
         u = (Usuario)getIntent().getSerializableExtra("usuario");
+
+        progressBar = (ProgressBar)findViewById(R.id.prBar_Listacandidatosadmin);
+
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.bringToFront();
 
         listaCandidatos= new ArrayList<>();
         listViewCandidatos = (ListView) findViewById(R.id.listViewCandidatosAdmin);
@@ -70,6 +78,7 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressBar.setVisibility(View.INVISIBLE);
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONArray array = obj.getJSONArray("aspirantes");
@@ -90,14 +99,15 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
                             ArrayAdapter<String> adaptador = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, listaInformacion);
                             listViewCandidatos.setAdapter(adaptador);
                         } catch (JSONException e) {
+                            progressBar.setVisibility(View.INVISIBLE);
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ListacandidatosadminActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(ListacandidatosadminActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(ListacandidatosadminActivity.this, R.string.toast_internet, Toast.LENGTH_SHORT).show();
             }
         });
 

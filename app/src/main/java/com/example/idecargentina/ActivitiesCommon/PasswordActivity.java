@@ -133,9 +133,6 @@ public class PasswordActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 progressBar.setVisibility(View.INVISIBLE);
-                Intent i = new Intent(getApplicationContext(),EditarusuarioActivity.class);
-                i.putExtra("usuario",usuario);
-                startActivity(i);
                 finish();
             }
         }, new Response.ErrorListener() {
