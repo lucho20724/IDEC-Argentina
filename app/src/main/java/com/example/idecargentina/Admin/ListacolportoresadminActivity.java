@@ -115,7 +115,7 @@ public class ListacolportoresadminActivity extends AppCompatActivity {
                                     }
                                 });
                         alerta.show();
-                    }else if(listaColportores.get(posicion).getCodrol()==2){
+                    }else if(listaColportores.get(posicion).getCodrol()==2){ //TODO para esta funcion es necesaria otra interfaz para el superadmin (codrol 1)
                         alerta.setMessage(R.string.alert_rol_user)
                                 .setTitle(R.string.atencion)
                                 .setCancelable(false)

@@ -88,10 +88,12 @@ public class LoginActivity extends AppCompatActivity {
                             }else{
                                 i = new Intent(getApplicationContext(), UserActivity.class);
                             }
+
                             i.putExtra("usuario",u);
                             startActivity(i);
                             finish();
                         }else{
+
                             Toast.makeText(LoginActivity.this, R.string.toast_datosincorrectos,Toast.LENGTH_SHORT).show();
                         }
                     }
