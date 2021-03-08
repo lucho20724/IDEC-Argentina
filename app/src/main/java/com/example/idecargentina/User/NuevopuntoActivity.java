@@ -70,7 +70,7 @@ public class NuevopuntoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         progressBar.setVisibility(VISIBLE);
-                        crearPunto_Servicio("http://www.boxwakanda.site/servicios/insertar_punto.php");
+                        crearPunto_Servicio("http://192.168.42.177/IDEC/insertar_punto.php");
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

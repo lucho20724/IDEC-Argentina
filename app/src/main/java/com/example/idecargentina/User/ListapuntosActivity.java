@@ -22,10 +22,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.idecargentina.Entidades.Candidato;
+import com.example.idecargentina.Entidades.Lista;
 import com.example.idecargentina.Entidades.Punto;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.Informes.InformepuntoActivity;
 import com.example.idecargentina.R;
+import com.example.idecargentina.Utilidades.CustomAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ListapuntosActivity extends AppCompatActivity {
@@ -51,6 +54,8 @@ public class ListapuntosActivity extends AppCompatActivity {
     ArrayList<Punto> listaPuntos;
     ArrayList<String> listaInformacion;
 
+    List<Lista> lst;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +69,7 @@ public class ListapuntosActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
 
-        buscarPuntos_Servicio("http://www.boxwakanda.site/servicios/buscar_puntos_usuario.php");
+        buscarPuntos_Servicio("http://192.168.42.177/IDEC/buscar_puntos_usuario.php");
 
         eliminar = getIntent().getBooleanExtra("eliminar",false);
         editar = getIntent().getBooleanExtra("editar",false);
@@ -98,7 +103,7 @@ public class ListapuntosActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     p=listaPuntos.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    eliminarPunto_Servicio("http://www.boxwakanda.site/servicios/eliminar_punto.php",p.getcodpunto());
+                                    eliminarPunto_Servicio("http://192.168.42.177/IDEC/eliminar_punto.php",p.getcodpunto());
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -136,8 +141,7 @@ public class ListapuntosActivity extends AppCompatActivity {
                                 );
                                 listaPuntos.add(p);
                             }
-                            obtenerLista();
-                            ArrayAdapter<String> adaptador = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, listaInformacion);
+                            CustomAdapter adaptador = new CustomAdapter(getApplicationContext(), obtenerLista());
                             listViewPuntos.setAdapter(adaptador);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -193,10 +197,13 @@ public class ListapuntosActivity extends AppCompatActivity {
         rq.add(stringRequest);
     }
 
-    private void obtenerLista() {
-        listaInformacion = new ArrayList<String>();
+    private List<Lista> obtenerLista() {
+        lst = new ArrayList<Lista>();
         for (int i=0; i<listaPuntos.size();i++){
-            listaInformacion.add(listaPuntos.get(i).getTitulo()+" - lat:"+listaPuntos.get(i).getLatitud()+" | long:"+listaPuntos.get(i).getLongitud());
+            Lista lista = null;
+            lista = new Lista(listaPuntos.get(i).getcodpunto(),R.drawable.marcadorpunto, listaPuntos.get(i).getTitulo(),"lat:"+listaPuntos.get(i).getLatitud()+" | long:"+listaPuntos.get(i).getLongitud());
+            lst.add(lista);
         }
+        return lst;
     }
 }

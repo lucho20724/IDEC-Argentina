@@ -82,7 +82,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
         fun = new Funciones();
 
         listaCampos = new ArrayList<>();
-        buscarCampos_Servicio("http://www.boxwakanda.site/servicios/buscar_campos.php");
+        buscarCampos_Servicio("http://192.168.42.177/IDEC/buscar_campos.php");
 
         spCampos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,7 +127,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     progressBar.setVisibility(View.VISIBLE);
-                                    editarUsuario_Servicio("http://www.boxwakanda.site/servicios/editar_usuario.php");
+                                    editarUsuario_Servicio("http://192.168.42.177/IDEC/editar_usuario.php");
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -151,7 +151,7 @@ public class EditarusuarioActivity extends AppCompatActivity {
         StringRequest stringRequest= new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                obtenerUserMod_Servicio("http://www.boxwakanda.site/servicios/obtener_usuario_id.php");
+                obtenerUserMod_Servicio("http://192.168.42.177/IDEC/obtener_usuario_id.php");
             }
         }, new Response.ErrorListener() {
             @Override

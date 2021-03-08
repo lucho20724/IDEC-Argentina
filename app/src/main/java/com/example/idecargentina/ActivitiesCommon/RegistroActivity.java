@@ -78,7 +78,7 @@ public class RegistroActivity extends AppCompatActivity {
         fun = new Funciones();
 
         listaCampos = new ArrayList<>();
-        buscarCampos_Servicio("http://www.boxwakanda.site/servicios/buscar_campos.php");
+        buscarCampos_Servicio("http://192.168.42.177/IDEC/buscar_campos.php");
         spCampos.setSelection(1);
 
         spCampos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -106,7 +106,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
         else{
             progressBar.setVisibility(View.VISIBLE);
-            crearUsuario_Servicio("http://www.boxwakanda.site/servicios/insertar_usuario.php");
+            crearUsuario_Servicio("http://192.168.42.177/IDEC/insertar_usuario.php");
         }
     }
 
@@ -172,7 +172,7 @@ public class RegistroActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         progressBar.setVisibility(View.VISIBLE);
-                                        validarUsuario_Servicio("http://www.boxwakanda.site/servicios/verificar_usuario.php");
+                                        validarUsuario_Servicio("http://192.168.42.177/IDEC/verificar_usuario.php");
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -250,6 +250,7 @@ public class RegistroActivity extends AppCompatActivity {
         RequestQueue rq = Volley.newRequestQueue(this);
         rq.add(stringRequest);
     }
+
     private void obtenerLista() {
         listaInformacion = new ArrayList<String>();
         listaInformacion.add(String.valueOf(getResources().getString(R.string.registro_campo)));
@@ -270,7 +271,6 @@ public class RegistroActivity extends AppCompatActivity {
                         if(!responseGlobal.isEmpty()){
 
                             Usuario u =fun.obtenerUsuario(responseGlobal, getApplicationContext());
-                            //Usuario u = obtenerUsuario(responseGlobal);
                             guardarPreferencias(u);
                             Intent i;
 

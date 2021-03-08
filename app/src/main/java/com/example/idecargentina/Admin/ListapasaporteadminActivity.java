@@ -21,8 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.idecargentina.Entidades.Lista;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.R;
+import com.example.idecargentina.Utilidades.CustomAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.lang.Boolean.FALSE;
@@ -48,6 +51,8 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
 
     ListView listViewPasaporte;
 
+    List<Lista> lst;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +69,7 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
 
-        buscarPasaportes_Servicio("http://www.boxwakanda.site/servicios/buscar_pasaportes.php");
+        buscarPasaportes_Servicio("http://192.168.42.177/IDEC/buscar_pasaportes.php");
 
         listViewPasaporte.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -80,7 +85,7 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     colportor=listaColportores.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    cambiarPasaporte_Servicio("http://www.boxwakanda.site/servicios/cambiar_pasaporte.php",colportor.getCodusuario(), TRUE);
+                                    cambiarPasaporte_Servicio("http://192.168.42.177/IDEC/cambiar_pasaporte.php",colportor.getCodusuario(), TRUE);
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -100,7 +105,7 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     colportor=listaColportores.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    cambiarPasaporte_Servicio("http://www.boxwakanda.site/servicios/cambiar_pasaporte.php",colportor.getCodusuario(), FALSE);
+                                    cambiarPasaporte_Servicio("http://192.168.42.177/IDEC/cambiar_pasaporte.php",colportor.getCodusuario(), FALSE);
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -141,9 +146,9 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
                         );
                         listaColportores.add(u);
                     }
-                    obtenerLista();
-                    ArrayAdapter<String> adaptador = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, listaInformacion);
+                    CustomAdapter adaptador = new CustomAdapter(getApplicationContext(), obtenerLista());
                     listViewPasaporte.setAdapter(adaptador);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -209,10 +214,13 @@ public class ListapasaporteadminActivity extends AppCompatActivity {
         rq.add(stringRequest);
     }
 
-    private void obtenerLista(){
-        listaInformacion = new ArrayList<String>();
+    private List<Lista> obtenerLista(){
+        lst = new ArrayList<Lista>();
         for (int i=0; i<listaColportores.size();i++){
-            listaInformacion.add(listaColportores.get(i).getNombre()+"  "+listaColportores.get(i).getApellido());
+            Lista lista = null;
+            lista = new Lista(listaColportores.get(i).getCodusuario(), R.drawable.ic_usuario, listaColportores.get(i).getNombre()+" "+listaColportores.get(i).getApellido(), String.valueOf(listaColportores.get(i).getNroalumno()));
+            lst.add(lista);
         }
+        return lst;
     }
 }

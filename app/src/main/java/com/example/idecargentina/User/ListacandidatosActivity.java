@@ -22,9 +22,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.idecargentina.Entidades.Candidato;
+import com.example.idecargentina.Entidades.Lista;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.Informes.InformecandidatoActivity;
 import com.example.idecargentina.R;
+import com.example.idecargentina.Utilidades.CustomAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ListacandidatosActivity extends AppCompatActivity {
@@ -50,6 +53,8 @@ public class ListacandidatosActivity extends AppCompatActivity {
     ArrayList<Candidato> listaCandidatos;
     ArrayList<String> listaInformacion;
 
+    List<Lista> lst;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +69,7 @@ public class ListacandidatosActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
 
-        buscarCandidatos_Servicio("http://www.boxwakanda.site/servicios/buscar_candidatos.php");
+        buscarCandidatos_Servicio("http://192.168.42.177/IDEC/buscar_candidatos.php");
 
         eliminar = getIntent().getBooleanExtra("eliminar",false);
         editar = getIntent().getBooleanExtra("editar",false);
@@ -92,7 +97,7 @@ public class ListacandidatosActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     c=listaCandidatos.get(posicion);
                                     progressBar.setVisibility(View.VISIBLE);
-                                    eliminarCanditado_Servicio("http://www.boxwakanda.site/servicios/eliminar_candidato.php",c.getCodcandidato());
+                                    eliminarCanditado_Servicio("http://192.168.42.177/IDEC/eliminar_candidato.php",c.getCodcandidato());
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -137,9 +142,9 @@ public class ListacandidatosActivity extends AppCompatActivity {
                                 );
                                 listaCandidatos.add(c);
                             }
-                            obtenerLista();
-                            ArrayAdapter<String> adaptador = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, listaInformacion);
+                            CustomAdapter adaptador = new CustomAdapter(getApplicationContext(), obtenerLista());
                             listViewCandidatos.setAdapter(adaptador);
+
                         } catch (JSONException e) {
                             progressBar.setVisibility(View.INVISIBLE);
                             e.printStackTrace();
@@ -200,10 +205,13 @@ public class ListacandidatosActivity extends AppCompatActivity {
         rq.add(stringRequest);
     }
 
-    private void obtenerLista() {
+    private List<Lista> obtenerLista() {
         listaInformacion = new ArrayList<String>();
+        Lista lista = null;
+
         for (int i=0; i<listaCandidatos.size();i++){
-            listaInformacion.add(listaCandidatos.get(i).getNombre()+"  "+listaCandidatos.get(i).getApellido());
+            lista = new Lista( listaCandidatos.get(i).getCodcandidato(),R.drawable.ic_usuario,listaCandidatos.get(i).getNombre()+" "+listaCandidatos.get(i).getApellido(), listaCandidatos.get(i).getNombre());
         }
+        return lst;
     }
 }

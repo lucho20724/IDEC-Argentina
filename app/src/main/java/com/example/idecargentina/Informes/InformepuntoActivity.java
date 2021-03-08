@@ -87,7 +87,7 @@ public class InformepuntoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         progressBar.setVisibility(View.VISIBLE);
-                        editarPunto_Servicio("http://www.boxwakanda.site/servicios/editar_punto.php");
+                        editarPunto_Servicio("http://192.168.42.177/IDEC/editar_punto.php");
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

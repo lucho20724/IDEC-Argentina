@@ -29,7 +29,7 @@ public class Funciones {
     }
 
     public Usuario obtenerUsuarioId_Servicio(final int codusuario, final Context context){
-        String URL = "http://www.boxwakanda.site/servicios/obtener_usuario_id.php";
+        String URL = "http://192.168.42.177/IDEC/obtener_usuario_id.php";
         usuario = new Usuario();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

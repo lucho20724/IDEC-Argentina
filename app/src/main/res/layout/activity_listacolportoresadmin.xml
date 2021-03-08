@@ -10,10 +10,15 @@
         android:id="@+id/listViewPasaporteAdmin"
         android:layout_width="323dp"
         android:layout_height="508dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="15dp"
+        android:cacheColorHint="@color/cardview_dark_background"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSeleccionPasaporteAdmin" >
+        app:layout_constraintTop_toBottomOf="@+id/lblSeleccionPasaporteAdmin">
 
     </ListView>
 

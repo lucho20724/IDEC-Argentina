@@ -104,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        buscarPuntos_Servicio("http://www.boxwakanda.site/servicios/buscar_puntos_usuario.php");
+                        buscarPuntos_Servicio("http://192.168.42.177/IDEC/buscar_puntos_usuario.php");
                     }
                 },3000);
             }

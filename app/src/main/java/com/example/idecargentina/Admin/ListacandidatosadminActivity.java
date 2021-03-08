@@ -19,18 +19,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.idecargentina.Entidades.Candidato;
+import com.example.idecargentina.Entidades.Lista;
 import com.example.idecargentina.Entidades.Usuario;
 import com.example.idecargentina.Informes.InformecandidatoadminActivity;
 import com.example.idecargentina.R;
 import com.example.idecargentina.User.ListacandidatosActivity;
 import com.example.idecargentina.User.NuevocandidatoActivity;
+import com.example.idecargentina.Utilidades.CustomAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ListacandidatosadminActivity extends AppCompatActivity {
@@ -44,6 +51,8 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
     ArrayList<String> listaInformacion;
 
     ProgressBar progressBar;
+
+    List<Lista> lst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +68,7 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
 
         listaCandidatos= new ArrayList<>();
         listViewCandidatos = (ListView) findViewById(R.id.listViewCandidatosAdmin);
-        buscarCandidatos_Servicio("http://www.boxwakanda.site/servicios/buscar_candidatos.php");
+        buscarCandidatos_Servicio("http://192.168.42.177/IDEC/buscar_candidatos.php");
 
         listViewCandidatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -96,7 +105,7 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
                                 listaCandidatos.add(c);
                             }
                             obtenerLista();
-                            ArrayAdapter<String> adaptador = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, listaInformacion);
+                            CustomAdapter adaptador = new CustomAdapter(getApplicationContext(), obtenerLista());
                             listViewCandidatos.setAdapter(adaptador);
                         } catch (JSONException e) {
                             progressBar.setVisibility(View.INVISIBLE);
@@ -115,12 +124,22 @@ public class ListacandidatosadminActivity extends AppCompatActivity {
         rq.add(stringRequest);
     }
 
-    private void obtenerLista() {
+    private List<Lista> obtenerLista() {
+        lst = new ArrayList<Lista>();
+        for (int i = 0; i < listaCandidatos.size(); i++) {
+            Lista lista = null;
+            lista = new Lista(listaCandidatos.get(i).getCodcandidato(),R.drawable.ic_usuario,listaCandidatos.get(i).getNombre()+" "+listaCandidatos.get(i).getApellido(),listaCandidatos.get(i).getTelefono());
+            lst.add(lista);
+        }
+        return lst;
+    }
+
+    /*private void obtenerLista() {
         listaInformacion = new ArrayList<String>();
         for (int i=0; i<listaCandidatos.size();i++){
             listaInformacion.add(listaCandidatos.get(i).getNombre()+"  "+listaCandidatos.get(i).getApellido());
         }
-    }
+    }*/
 
 
 }

@@ -76,7 +76,7 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 progressBar.setVisibility(View.VISIBLE);
-                                editarAspirante_Servicio("http://www.boxwakanda.site/servicios/editar_candidato.php");
+                                editarAspirante_Servicio("http://192.168.42.177/IDEC/editar_candidato.php");
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -101,7 +101,7 @@ public class NuevocandidatoActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 progressBar.setVisibility(View.VISIBLE);
-                                crearAspirante_Servicio("http://www.boxwakanda.site/servicios/insertar_aspirante.php");
+                                crearAspirante_Servicio("http://192.168.42.177/IDEC/insertar_aspirante.php");
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
